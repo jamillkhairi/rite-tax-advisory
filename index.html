@@ -148,9 +148,9 @@
                     AI
                 </div>
                 <div>
-                    <h3 class="text-xs font-black text-white">Tax & General Assistant</h3>
+                    <h3 class="text-xs font-black text-white">Tax Advisory Assistant</h3>
                     <span class="text-[9px] text-[#ccff00] font-semibold flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span> Online • Groq AI
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span> Online • Rite Sdn Bhd
                     </span>
                 </div>
             </div>
@@ -166,7 +166,7 @@
                     AI
                 </div>
                 <div class="bg-white border border-slate-200/70 p-3 rounded-2xl rounded-tl-none text-slate-700 shadow-sm leading-relaxed">
-                    Hai! Saya AI Assistant EduPortal. Anda boleh tanya apa-apa sahaja soalan—sama ada berkaitan cukai <b>Rite Sdn Bhd</b> atau topik bebas yang lain!
+                    Hai! Saya AI Assistant EduPortal. Ada apa-apa persoalan berkaitan cukai kes <b>Rite Sdn Bhd</b>?
                 </div>
             </div>
         </div>
@@ -176,25 +176,21 @@
             <button onclick="sendFloatingPreset('lease')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">🚗 Pajakan Kereta</button>
             <button onclick="sendFloatingPreset('entertainment')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">🍷 Hiburan</button>
             <button onclick="sendFloatingPreset('bad debt')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">📉 Hutang Lapuk</button>
-            <button onclick="sendFloatingPreset('general')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">💡 Soalan Bebas</button>
+            <button onclick="sendFloatingPreset('withholding')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">🌍 Cukai Pegangan</button>
         </div>
 
         <!-- Kotak Taip Mesej -->
         <div class="p-3 bg-white border-t border-slate-200/80 flex gap-2">
-            <input type="text" id="floatingUserInput" onkeypress="handleFloatingKey(event)" placeholder="Taip apa-apa soalan..." class="flex-grow px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-slate-900 transition">
+            <input type="text" id="floatingUserInput" onkeypress="handleFloatingKey(event)" placeholder="Taip soalan..." class="flex-grow px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-slate-900 transition">
             <button onclick="processFloatingMessage()" class="bg-[#18191c] hover:bg-black text-[#ccff00] px-4 py-2 rounded-xl text-xs font-black transition">
                 Hantar
             </button>
         </div>
     </div>
 
-    <!-- JAVASCRIPT MASTER & GROQ API SEBENAR -->
+    <!-- JAVASCRIPT MASTER & PANGGIL FAIL FAQ ASING -->
+    <script src="faq-data.js"></script>
     <script>
-        // ==========================================
-        // LETAKKAN GROQ API KEY ANDA DI BAWAH INI:
-        // ==========================================
-        const GROQ_API_KEY = "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";
-
         async function loadModule(moduleFile, element) {
             const container = document.getElementById('module-container');
             
@@ -238,7 +234,7 @@
             loadModule('modul1', firstTab);
         };
 
-        // CHATBOT LOGIK GROQ API
+        // CHATBOT LOGIK WIDGET
         function toggleAiChat() {
             const chatWindow = document.getElementById('aiChatWindow');
             chatWindow.classList.toggle('hidden');
@@ -263,56 +259,7 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        async function getGroqResponse(userPrompt) {
-            // Kita semak jika kunci kosong atau tiada awalan gsk_
-            if (!GROQ_API_KEY || !GROQ_API_KEY.startsWith("gsk_")) {
-                return "Sila masukkan Groq API Key yang sah (bermula dengan gsk_).";
-            }
-        
-            const url = "https://api.groq.com/openai/v1/chat/completions";
-            
-            const payload = {
-                model: "llama-3.1-8b-instant",
-                messages: [
-                    {
-                        role: "system",
-                        content: "Anda ialah AI Assistant yang pintar untuk portal EduPortal Tax Advisory. Anda membantu menjawab soalan berkaitan kes cukai korporat Rite Sdn Bhd mengikut Akta Cukai Pendapatan 1967, serta boleh menjawab apa-apa soalan umum lain secara profesional dan mesra dalam Bahasa Melayu."
-                    },
-                    {
-                        role: "user",
-                        content: userPrompt
-                    }
-                ],
-                temperature: 0.7
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${GROQ_API_KEY}`
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                const data = await response.json();
-                
-                if (data.error) {
-                    return "Ralat Groq API: " + (data.error.message || "Sila semak semula API Key anda.");
-                }
-
-                if (data.choices && data.choices[0].message.content) {
-                    return data.choices[0].message.content;
-                } else {
-                    return "Maaf, respons tidak dapat diproses.";
-                }
-            } catch (error) {
-                return "Ralat sambungan rangkaian ke pelayan Groq.";
-            }
-        }
-
-        async function processFloatingMessage() {
+        function processFloatingMessage() {
             const inputField = document.getElementById('floatingUserInput');
             const text = inputField.value.trim();
             if(!text) return;
@@ -320,31 +267,25 @@
             appendFloatingMessage('user', text);
             inputField.value = '';
 
-            const container = document.getElementById('floatingChatContainer');
-            const loadingId = 'loading-' + Date.now();
-            container.innerHTML += `
-                <div id="${loadingId}" class="flex items-start gap-2.5">
-                    <div class="w-7 h-7 rounded-xl bg-[#18191c] text-[#ccff00] font-black text-[10px] flex items-center justify-center shrink-0">AI</div>
-                    <div class="bg-white border border-slate-200/70 p-3 rounded-2xl text-slate-400 italic">Sedang menaip...</div>
-                </div>
-            `;
-            container.scrollTop = container.scrollHeight;
-
-            const aiReply = await getGroqResponse(text);
-
-            document.getElementById(loadingId).remove();
-            appendFloatingMessage('bot', aiReply);
+            setTimeout(() => {
+                // Fungsi ni akan ambil data secara automatik dari fail faq-data.js di atas
+                const reply = getFloatingBotResponse(text);
+                appendFloatingMessage('bot', reply);
+            }, 300);
         }
 
         function sendFloatingPreset(topic) {
             let queryText = "";
-            if(topic === 'lease') queryText = "Bagaimana pelarasan pajakan kenderaan bawah s.39(1)(k) untuk Rite Sdn Bhd?";
+            if(topic === 'lease') queryText = "Bagaimana pelarasan pajakan kenderaan bawah s.39(1)(k)?";
             if(topic === 'entertainment') queryText = "Jelaskan perbelanjaan hiburan pelanggan dan pekerja.";
             if(topic === 'bad debt') queryText = "Adakah hapus kira hutang perdagangan pembekal China dibenarkan?";
-            if(topic === 'general') queryText = "Berikan tips ringkas cara membuat pengurusan kewangan syarikat yang baik.";
+            if(topic === 'withholding') queryText = "Terangkan implikasi Cukai Pegangan di bawah s.109B.";
 
-            document.getElementById('floatingUserInput').value = queryText;
-            processFloatingMessage();
+            appendFloatingMessage('user', queryText);
+            setTimeout(() => {
+                const reply = getFloatingBotResponse(topic);
+                appendFloatingMessage('bot', reply);
+            }, 300);
         }
 
         function handleFloatingKey(e) {
