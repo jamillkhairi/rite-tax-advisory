@@ -296,7 +296,7 @@
                 return "Sila masukkan Gemini API Key terlebih dahulu di dalam kod JavaScript untuk mengaktifkan AI sebenar.";
             }
 
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
             
             // Kita beri konteks awal supaya AI kenal dia ialah pakar cukai kes Rite Sdn Bhd
             const systemContext = "Anda ialah Tax Advisory AI Assistant yang membantu pelajar UPSI menyiapkan kes kajian cukai korporat Rite Sdn Bhd mengikut Akta Cukai Pendapatan 1967 dan Public Rulings LHDN Malaysia. Jawab dengan ringkas, profesional, dan tepat dalam Bahasa Melayu.";
