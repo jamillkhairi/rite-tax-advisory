@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPortal Tax Advisory • Rite Sdn Bhd</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#f1f5f9] text-slate-800 min-h-screen flex selection:bg-[#ccff00] selection:text-black">
+
+    <!-- 1. MINIMALIST DARK SIDEBAR LEFT -->
+    <aside class="w-60 bg-[#18191c] text-white p-5 flex flex-col justify-between shrink-0 min-h-screen border-r border-white/5">
+        <div>
+            <!-- Brand / Logo -->
+            <div class="flex items-center gap-3 mb-8 px-2">
+                <div class="w-9 h-9 rounded-xl bg-[#ccff00] flex items-center justify-center text-black font-black text-lg shadow-[0_0_15px_rgba(204,255,0,0.3)]">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="font-black text-base tracking-tight leading-none text-white">EduPortal</h1>
+                    <span class="text-[9px] text-slate-400 font-bold tracking-wider uppercase">Tax Advisory v2.0</span>
+                </div>
+            </div>
+
+            <!-- Ringkasan Kategori Menu -->
+            <div class="px-3 mb-3">
+                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest">Main Menu</span>
+            </div>
+
+            <!-- Nav Menu Buttons (Teks Pendek & Ringkas) -->
+            <nav class="space-y-1.5">
+                <button onclick="loadModule('modul1', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all bg-white text-black shadow-sm">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-sm">📊</span>
+                        <span class="whitespace-nowrap">Case Hub</span>
+                    </div>
+                    <span class="w-2 h-2 rounded-full bg-[#ccff00] active-dot"></span>
+                </button>
+
+                <button onclick="loadModule('modul2', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-sm">🧮</span>
+                        <span class="whitespace-nowrap">Tax Calculator</span>
+                    </div>
+                </button>
+
+                <button onclick="loadModule('modul3', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-sm">🛡️</span>
+                        <span class="whitespace-nowrap">s.140 Scanner</span>
+                    </div>
+                </button>
+
+                <button onclick="loadModule('modul4', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-sm">📚</span>
+                        <span class="whitespace-nowrap">Legal Explorer</span>
+                    </div>
+                </button>
+
+                <button onclick="loadModule('modul5', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-sm">👥</span>
+                        <span class="whitespace-nowrap">Team Info</span>
+                    </div>
+                </button>    
+
+            </nav>
+        </div>
+
+        <!-- Bottom Info Card (Lebih Soft) -->
+        <div class="bg-[#24262b] p-3.5 rounded-2xl border border-white/5 mt-6">
+            <div class="bg-[#ccff00] text-black p-2.5 rounded-xl mb-2">
+                <p class="text-[9px] font-black uppercase tracking-wider">YA 2023 Case</p>
+                <p class="text-xs font-black truncate">Rite Sdn Bhd</p>
+            </div>
+            <p class="text-[9px] text-slate-400 leading-tight px-1 font-medium">UPSI PAT3024 Project</p>
+        </div>
+    </aside>
+
+    <!-- 2. MAIN WORKSPACE -->
+    <div class="flex-grow flex flex-col min-w-0 min-h-screen">
+        
+        <!-- Header Atas -->
+        <header class="bg-white px-8 py-4 border-b border-slate-200/80 flex flex-wrap justify-between items-center gap-4 sticky top-0 z-30">
+            <div>
+                <h2 class="text-lg font-black text-slate-900 tracking-tight">Overview & Analytics</h2>
+                <p class="text-[11px] font-medium text-slate-500">Semak pelarasan cukai & dokumen audit syarikat.</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="bg-slate-100 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600">
+                    🗓️ 31 Dis 2023
+                </div>
+                <div class="bg-[#18191c] text-white pl-2 pr-3.5 py-1 rounded-xl flex items-center gap-2 shadow-sm">
+                    <div class="w-6 h-6 rounded-lg bg-[#b8a5fe] text-black font-extrabold text-[10px] flex items-center justify-center">
+                        TX
+                    </div>
+                    <span class="text-xs font-bold">Group Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Container Modul -->
+        <main id="module-container" class="p-8 flex-grow">
+            <div class="flex items-center justify-center py-24 text-slate-400 font-bold text-sm">
+                Memuatkan modul...
+            </div>
+        </main>
+
+    </div>
+
+    <!-- MODAL POPUP AUDIT -->
+    <div id="auditModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-[#18191c] text-white rounded-3xl max-w-lg w-full p-8 shadow-2xl border border-white/10">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                <h3 id="modalTitle" class="text-lg font-black text-[#ccff00]"></h3>
+                <button onclick="closeAuditDetail()" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition">✕</button>
+            </div>
+            <p id="modalBody" class="text-xs sm:text-sm text-slate-300 leading-relaxed bg-white/5 p-5 rounded-2xl border border-white/5 mb-6"></p>
+            <div class="flex justify-end">
+                <button onclick="closeAuditDetail()" class="bg-[#ccff00] text-black text-xs font-black px-6 py-3 rounded-2xl hover:bg-[#b5e600] transition">Selesai Semak</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MASTER -->
+    <script>
+        async function loadModule(moduleFile, element) {
+            const container = document.getElementById('module-container');
+            
+            // Reset gaya semua tab
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.className = 'nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10';
+                const activeDot = tab.querySelector('.active-dot');
+                if(activeDot) activeDot.remove();
+            });
+            
+            // Set tab aktif
+            element.className = 'nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all bg-white text-black shadow-sm';
+            if(!element.querySelector('.active-dot')) {
+                element.innerHTML += `<span class="w-2 h-2 rounded-full bg-[#ccff00] active-dot"></span>`;
+            }
+
+            try {
+                const response = await fetch(`${moduleFile}.html`);
+                if (response.ok) {
+                    const html = await response.text();
+                    container.innerHTML = html;
+                } else {
+                    container.innerHTML = `<div class="p-6 bg-red-100 text-red-700 rounded-2xl text-sm font-bold">Gagal memuatkan ${moduleFile}.html</div>`;
+                }
+            } catch (error) {
+                container.innerHTML = `<div class="p-6 bg-amber-100 text-amber-800 rounded-2xl text-sm font-bold">Nota: Buka fail melalui VS Code Live Server.</div>`;
+            }
+        }
+
+        function showAuditDetail(title, body) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = body;
+            document.getElementById('auditModal').classList.remove('hidden');
+        }
+
+        function closeAuditDetail() {
+            document.getElementById('auditModal').classList.add('hidden');
+        }
+
+        function filterPR() {
+            const input = document.getElementById('prSearchInput');
+            if (!input) return;
+            const query = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.pr-card');
+
+            cards.forEach(card => {
+                const keyword = card.getAttribute('data-keyword') ? card.getAttribute('data-keyword').toLowerCase() : '';
+                const textContent = card.innerText.toLowerCase();
+                if (keyword.includes(query) || textContent.includes(query)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        window.onload = () => {
+            const firstTab = document.querySelector('.nav-tab');
+            loadModule('modul1', firstTab);
+        };
+    </script>
+</body>
+</html>

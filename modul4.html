@@ -1,0 +1,184 @@
+<div class="space-y-6">
+    <!-- Header Modul 4 -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-wrap justify-between items-center gap-4">
+        <div>
+            <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Statutory Explorer</span>
+            <h2 class="text-2xl font-bold text-gray-800 mt-2">Legal & Knowledge Hub</h2>
+            <p class="text-xs text-gray-500 mt-1">Pusat rujukan Ketetapan Umum (Public Rulings) LHDN & peruntukan Akta Cukai Pendapatan 1967.</p>
+        </div>
+        
+        <div class="flex gap-2">
+            <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs px-3.5 py-2 rounded-lg font-medium transition flex items-center gap-1.5">
+                <span>🌐</span> Portal BM
+            </a>
+            <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs px-3.5 py-2 rounded-lg font-medium transition flex items-center gap-1.5">
+                <span>🌐</span> Portal ENG
+            </a>
+        </div>
+    </div>
+
+    <!-- Pangkalan Data Public Rulings & Kotak Carian -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        
+        <div class="flex flex-wrap justify-between items-center mb-6 gap-4 border-b pb-4">
+            <div>
+                <h3 class="text-base font-bold text-gray-800">Repositori Ketetapan Umum LHDN (Pilihan Korporat)</h3>
+                <p class="text-xs text-gray-400">Senarai PR utama melibatkan Percukaian Syarikat & Audit Kes.</p>
+            </div>
+            
+            <div class="relative w-full sm:w-80">
+                <input type="text" id="prSearchInput" onkeyup="filterPR()" oninput="filterPR()" placeholder="Cari PR, Seksyen, atau Topik..." class="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                <svg class="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+        </div>
+
+        <!-- Senarai Kad PR Komprehensif -->
+        <div id="prList" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <!-- PR 1: Motor Vehicle Lease -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-blue-200 transition flex flex-col justify-between" data-keyword="lease motor vehicle kereta sewa s39 39(1)(k) pr 3/2017">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 3/2017</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.39(1)(k)</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Pajakan Kenderaan Motor</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Had sekatan potongan cukai pajakan kereta penumpang (Cap RM50k jika kos > RM150k; Cap RM100k jika kos ≤ RM150k).
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+            <!-- PR 2: Entertainment Expenses -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-purple-200 transition flex flex-col justify-between" data-keyword="entertainment hiburan s39 39(1)(l) staff dinner pr 4/2015">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-purple-50 text-purple-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 4/2015</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.39(1)(l)</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Perbelanjaan Hiburan Korporat</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Syarat potongan cukai 50% bagi hiburan pelanggan dan 100% potongan bagi keraian pekerja (Family Day/Dinner).
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+            <!-- PR 3: Bad and Doubtful Debts -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-emerald-200 transition flex flex-col justify-between" data-keyword="bad debt hutang ragu lapuk s34 34(2) pr 1/2021">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 1/2021</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.34(2)</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Hutang Lapuk & Ragu</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Kriteria pemotongan cukai bagi hutang perdagangan yang dihapus kira serta keperluan bukti tindakan tuntutan.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+            <!-- PR 4: Withholding Tax -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-amber-200 transition flex flex-col justify-between" data-keyword="withholding tax cukai pegangan s109 109b non resident pr 10/2019">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-amber-50 text-amber-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 10/2019</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.109B</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Cukai Pegangan Kelas Khas</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Cukai pegangan 10% atas perkhidmatan, bantuan teknikal, atau royalti yang dibayar kepada syarikat luar negara.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+            <!-- PR 5: Foreign Exchange Gains and Losses -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-indigo-200 transition flex flex-col justify-between" data-keyword="foreign exchange forex untung rugi mata wang asing pr 12/2019">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-indigo-50 text-indigo-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 12/2019</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.33(1)</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Untung/Rugi Pertukaran Mata Wang Asing</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Layanan cukai bagi keuntungan/kerugian forex direalisasi (*realised*) dan belum direalisasi (*unrealised*).
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+            <!-- PR 6: Repairs and Renewals -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-teal-200 transition flex flex-col justify-between" data-keyword="repairs pembaikan pembaharuan aset pr 6/2019 s33">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-teal-50 text-teal-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 6/2019</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.33(1)(ef)</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Pembaikan & Pembaharuan Aset</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Perbezaan perbelanjaan pembaikan dibenar (*revenue expense*) dan peningkatan modal (*capital expenditure*).
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+            <!-- PR 7: Disabled Persons Business Expenses -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-pink-200 transition flex flex-col justify-between" data-keyword="disabled oku pekerja kurang upaya potongan berganda double deduction pr 3/2019">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-pink-50 text-pink-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 3/2019</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.34(4)</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Potongan Berganda Gaji OKU</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Kelayakan potongan cukai dua kali (*double deduction*) bagi saraan yang dibayar kepada pekerja OKU.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+            <!-- PR 8: Group Relief for Companies -->
+            <div class="pr-card bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md hover:border-cyan-200 transition flex flex-col justify-between" data-keyword="group relief pelepasan kumpulan rugi syarikat pr 2/2025 s44a">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-cyan-50 text-cyan-600 text-xs font-bold px-2.5 py-1 rounded-md">PR No. 2/2025</span>
+                        <span class="text-xs text-gray-400 font-mono bg-gray-50 px-2 py-0.5 rounded">s.44A</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1.5">Pelepasan Kumpulan Syarikat</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                        Syarat pemindahan sehingga 70% kerugian dilaras antara syarikat berkaitan dalam kumpulan yang sama.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-3 border-t border-gray-50">
+                    <a href="https://www.hasil.gov.my/perundangan/ketetapan-umum/?isStampsSite=false&lang=ms" target="_blank" class="bg-red-50 hover:bg-red-100 text-red-700 text-xs py-1.5 text-center font-medium rounded-lg transition">Bahasa Melayu</a>
+                    <a href="https://www.hasil.gov.my/en/perundangan/ketetapan-umum/?isStampsSite=false&lang=en" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs py-1.5 text-center font-medium rounded-lg transition">English Version</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
