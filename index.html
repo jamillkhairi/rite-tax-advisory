@@ -261,7 +261,11 @@
     </div>
 
     <!-- SKRIP LOGIK FLOATING CHATBOT -->
+    <!-- SKRIP LOGIK GEMINI API SEBENAR -->
     <script>
+        // MASUKKAN GEMINI API KEY KAU KAT SINI
+        const GEMINI_API_KEY = "MASUKKAN_API_KEY_KAU_DI_SINI"; 
+
         function toggleAiChat() {
             const chatWindow = document.getElementById('aiChatWindow');
             chatWindow.classList.toggle('hidden');
@@ -286,30 +290,46 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        function getFloatingBotResponse(query) {
-            q = query.toLowerCase();
-
-            if (q.includes('lease') || q.includes('pajakan') || q.includes('kereta') || q.includes('nota 11')) {
-                return "<b>Rujukan Nota 11:</b> Pajakan kereta disekat di bawah s.39(1)(k) (Cap RM50k/RM100k berdasarkan kos asal kenderaan, PR 3/2017).";
-            } 
-            else if (q.includes('entertainment') || q.includes('hiburan') || q.includes('nota 8')) {
-                return "<b>Rujukan Nota 8:</b> Hiburan pelanggan layak potongan 50% sahaja (s.39(1)(l)). Keraian pekerja/Annual Dinner layak 100% (PR 4/2015).";
-            } 
-            else if (q.includes('bad debt') || q.includes('hutang') || q.includes('china') || q.includes('nota 5')) {
-                return "<b>Rujukan Nota 5:</b> Hapus kira hutang perdagangan pembekal China RM4M dibenarkan di bawah s.34(2).";
-            } 
-            else if (q.includes('withholding') || q.includes('cukai pegangan') || q.includes('jerman') || q.includes('sweden') || q.includes('nota 4')) {
-                return "<b>Rujukan Nota 4 & 15:</b> Bayaran luar negara tertakluk Cukai Pegangan 10% (s.109B). Jika gagal remit, belanja tidak boleh potong (s.39(1)(r)).";
-            } 
-            else if (q.includes('dividen') || q.includes('faedah') || q.includes('nota 1')) {
-                return "<b>Rujukan Nota 1:</b> Dividen RM178k dikecualikan. Faedah pinjaman saham RM1.5M dilarang (s.33(1)(a)).";
+        // FUNGSI BERHUBUNG DENGAN GEMINI API
+        async function getGeminiResponse(userPrompt) {
+            if (GEMINI_API_KEY === "MASUKKAN_API_KEY_KAU_DI_SINI" || !GEMINI_API_KEY) {
+                return "Sila masukkan Gemini API Key terlebih dahulu di dalam kod JavaScript untuk mengaktifkan AI sebenar.";
             }
-            else {
-                return "Maaf, sila rujuk modul Legal Explorer atau pilih soalan pantas di atas untuk kes Rite Sdn Bhd!";
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+            
+            // Kita beri konteks awal supaya AI kenal dia ialah pakar cukai kes Rite Sdn Bhd
+            const systemContext = "Anda ialah Tax Advisory AI Assistant yang membantu pelajar UPSI menyiapkan kes kajian cukai korporat Rite Sdn Bhd mengikut Akta Cukai Pendapatan 1967 dan Public Rulings LHDN Malaysia. Jawab dengan ringkas, profesional, dan tepat dalam Bahasa Melayu.";
+
+            const payload = {
+                contents: [
+                    {
+                        parts: [
+                            { text: systemContext + "\n\nSoalan Pengguna: " + userPrompt }
+                        ]
+                    }
+                ]
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    return data.candidates[0].content.parts[0].text;
+                } else {
+                    return "Maaf, terdapat ralat semasa memproses respons AI.";
+                }
+            } catch (error) {
+                return "Ralat sambungan rangkaian ke pelayan Gemini API.";
             }
         }
 
-        function processFloatingMessage() {
+        async function processFloatingMessage() {
             const inputField = document.getElementById('floatingUserInput');
             const text = inputField.value.trim();
             if(!text) return;
@@ -317,24 +337,34 @@
             appendFloatingMessage('user', text);
             inputField.value = '';
 
-            setTimeout(() => {
-                const reply = getFloatingBotResponse(text);
-                appendFloatingMessage('bot', reply);
-            }, 300);
+            // Papar mesej loading sementara menunggu Gemini balas
+            const container = document.getElementById('floatingChatContainer');
+            const loadingId = 'loading-' + Date.now();
+            container.innerHTML += `
+                <div id="${loadingId}" class="flex items-start gap-2.5">
+                    <div class="w-7 h-7 rounded-xl bg-[#18191c] text-[#ccff00] font-black text-[10px] flex items-center justify-center shrink-0">AI</div>
+                    <div class="bg-white border border-slate-200/70 p-3 rounded-2xl text-slate-400 italic">Sedang menaip...</div>
+                </div>
+            `;
+            container.scrollTop = container.scrollHeight;
+
+            // Panggil API Gemini sebenar
+            const aiReply = await getGeminiResponse(text);
+
+            // Buang mesej loading & paparkan jawapan sebenar
+            document.getElementById(loadingId).remove();
+            appendFloatingMessage('bot', aiReply);
         }
 
         function sendFloatingPreset(topic) {
             let queryText = "";
-            if(topic === 'lease') queryText = "Isu pajakan kereta?";
-            if(topic === 'entertainment') queryText = "Peraturan belanja hiburan?";
-            if(topic === 'bad debt') queryText = "Hutang lapuk pembekal China?";
-            if(topic === 'withholding') queryText = "Isu cukai pegangan luar negara?";
+            if(topic === 'lease') queryText = "Bagaimana pelarasan pajakan kenderaan bawah s.39(1)(k)?";
+            if(topic === 'entertainment') queryText = "Jelaskan perbelanjaan hiburan pelanggan dan pekerja.";
+            if(topic === 'bad debt') queryText = "Adakah hapus kira hutang perdagangan pembekal China dibenarkan?";
+            if(topic === 'withholding') queryText = "Terangkan implikasi Cukai Pegangan di bawah s.109B.";
 
-            appendFloatingMessage('user', queryText);
-            setTimeout(() => {
-                const reply = getFloatingBotResponse(topic);
-                appendFloatingMessage('bot', reply);
-            }, 300);
+            document.getElementById('floatingUserInput').value = queryText;
+            processFloatingMessage();
         }
 
         function handleFloatingKey(e) {
