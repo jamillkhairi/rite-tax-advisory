@@ -133,68 +133,88 @@
     </div>
 
     <!-- JAVASCRIPT MASTER -->
+    <!-- SKRIP LOGIK SMART FAQ BOT (KEBAL & TANPA API KEY) -->
     <script>
-        async function loadModule(moduleFile, element) {
-            const container = document.getElementById('module-container');
-            
-            // Reset gaya semua tab
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => {
-                tab.className = 'nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10';
-                const activeDot = tab.querySelector('.active-dot');
-                if(activeDot) activeDot.remove();
-            });
-            
-            // Set tab aktif
-            element.className = 'nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all bg-white text-black shadow-sm';
-            if(!element.querySelector('.active-dot')) {
-                element.innerHTML += `<span class="w-2 h-2 rounded-full bg-[#ccff00] active-dot"></span>`;
+        function toggleAiChat() {
+            const chatWindow = document.getElementById('aiChatWindow');
+            chatWindow.classList.toggle('hidden');
+        }
+
+        function appendFloatingMessage(sender, text) {
+            const container = document.getElementById('floatingChatContainer');
+            if (!container) return;
+
+            const isUser = sender === 'user';
+            const bubbleHTML = `
+                <div class="flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : ''}">
+                    <div class="w-7 h-7 rounded-xl ${isUser ? 'bg-[#b8a5fe] text-black' : 'bg-[#18191c] text-[#ccff00]'} font-black text-[10px] flex items-center justify-center shrink-0 shadow-sm">
+                        ${isUser ? 'TX' : 'AI'}
+                    </div>
+                    <div class="${isUser ? 'bg-[#18191c] text-white rounded-tr-none' : 'bg-white border border-slate-200/70 text-slate-700 rounded-tl-none'} p-3 rounded-2xl max-w-[260px] shadow-sm leading-relaxed">
+                        ${text}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += bubbleHTML;
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function getFloatingBotResponse(query) {
+            q = query.toLowerCase();
+
+            if (q.includes('lease') || q.includes('pajakan') || q.includes('kereta') || q.includes('nota 11')) {
+                return "<b>Rujukan Nota 11 (Pajakan Kenderaan):</b> Pajakan kereta penumpang disekat di bawah s.39(1)(k) (Had had maksimum kos pemilikan RM50k/RM100k, PR No. 3/2017). Lori komersial dibenarkan penuh.";
+            } 
+            else if (q.includes('entertainment') || q.includes('hiburan') || q.includes('nota 8')) {
+                return "<b>Rujukan Nota 8 (Perbelanjaan Hiburan):</b> Hiburan kepada pelanggan layak potongan 50% sahaja (s.39(1)(l)). Manakala hiburan/keraian pekerja (seperti Annual Dinner) layak potongan penuh 100% (PR No. 4/2015).";
+            } 
+            else if (q.includes('bad debt') || q.includes('hutang') || q.includes('china') || q.includes('nota 5')) {
+                return "<b>Rujukan Nota 5 (Hutang Lapuk & Ragu):</b> Hapus kira hutang perdagangan pembekal China bernilai RM4M dibenarkan potongan di bawah s.34(2) kerana memenuhi syarat tindakan kutipan munasabah.";
+            } 
+            else if (q.includes('withholding') || q.includes('cukai pegangan') || q.includes('jerman') || q.includes('sweden') || q.includes('nota 4')) {
+                return "<b>Rujukan Nota 4 & 15 (Cukai Pegangan):</b> Bayaran kepada syarikat bukan pemastautin (Jurutera Jerman & Sweden) tertakluk Cukai Pegangan 10% (s.109B). Gagal remit menyebabkan belanja jadi *disallowed* (s.39(1)(r)).";
+            } 
+            else if (q.includes('dividen') || q.includes('faedah') || q.includes('nota 1')) {
+                return "<b>Rujukan Nota 1 (Dividen & Faedah):</b> Dividen RM178k adalah dikecualikan cukai. Belanja faedah pinjaman bank RM1.5M untuk pelaburan saham dilarang (*disallowed*) di bawah s.33(1)(a).";
             }
-
-            try {
-                const response = await fetch(`${moduleFile}.html`);
-                if (response.ok) {
-                    const html = await response.text();
-                    container.innerHTML = html;
-                } else {
-                    container.innerHTML = `<div class="p-6 bg-red-100 text-red-700 rounded-2xl text-sm font-bold">Gagal memuatkan ${moduleFile}.html</div>`;
-                }
-            } catch (error) {
-                container.innerHTML = `<div class="p-6 bg-amber-100 text-amber-800 rounded-2xl text-sm font-bold">Nota: Buka fail melalui VS Code Live Server.</div>`;
+            else {
+                return "Berdasarkan kes Rite Sdn Bhd, anda boleh rujuk butang soalan pantas di atas atau semak modul <b>Legal Explorer</b> untuk rujukan Public Ruling LHDN yang terperinci!";
             }
         }
 
-        function showAuditDetail(title, body) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalBody').innerText = body;
-            document.getElementById('auditModal').classList.remove('hidden');
+        function processFloatingMessage() {
+            const inputField = document.getElementById('floatingUserInput');
+            const text = inputField.value.trim();
+            if(!text) return;
+
+            appendFloatingMessage('user', text);
+            inputField.value = '';
+
+            setTimeout(() => {
+                const reply = getFloatingBotResponse(text);
+                appendFloatingMessage('bot', reply);
+            }, 300);
         }
 
-        function closeAuditDetail() {
-            document.getElementById('auditModal').classList.add('hidden');
+        function sendFloatingPreset(topic) {
+            let queryText = "";
+            if(topic === 'lease') queryText = "Bagaimana pelarasan pajakan kenderaan bawah s.39(1)(k)?";
+            if(topic === 'entertainment') queryText = "Jelaskan perbelanjaan hiburan pelanggan dan pekerja.";
+            if(topic === 'bad debt') queryText = "Adakah hapus kira hutang perdagangan pembekal China dibenarkan?";
+            if(topic === 'withholding') queryText = "Terangkan implikasi Cukai Pegangan di bawah s.109B.";
+
+            appendFloatingMessage('user', queryText);
+            setTimeout(() => {
+                const reply = getFloatingBotResponse(topic);
+                appendFloatingMessage('bot', reply);
+            }, 300);
         }
 
-        function filterPR() {
-            const input = document.getElementById('prSearchInput');
-            if (!input) return;
-            const query = input.value.toLowerCase();
-            const cards = document.querySelectorAll('.pr-card');
-
-            cards.forEach(card => {
-                const keyword = card.getAttribute('data-keyword') ? card.getAttribute('data-keyword').toLowerCase() : '';
-                const textContent = card.innerText.toLowerCase();
-                if (keyword.includes(query) || textContent.includes(query)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
+        function handleFloatingKey(e) {
+            if(e.key === 'Enter') {
+                processFloatingMessage();
+            }
         }
-
-        window.onload = () => {
-            const firstTab = document.querySelector('.nav-tab');
-            loadModule('modul1', firstTab);
-        };
     </script>
 
     <!-- ========================================== -->
