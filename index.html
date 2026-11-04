@@ -150,7 +150,7 @@
                 <div>
                     <h3 class="text-xs font-black text-white">Tax & General Assistant</h3>
                     <span class="text-[9px] text-[#ccff00] font-semibold flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span> Online • Gemini AI
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span> Online • Groq AI
                     </span>
                 </div>
             </div>
@@ -188,10 +188,12 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT MASTER & GEMINI API SEBENAR -->
+    <!-- JAVASCRIPT MASTER & GROQ API SEBENAR -->
     <script>
-        // MASUKKAN API KEY STANDARD (Mesti bermula dengan AIzaSy...) DI SINI:
-        const GEMINI_API_KEY = "MASUKKAN_API_KEY_AIzaSy_KAU_DI_SINI";
+        // ==========================================
+        // LETAKKAN GROQ API KEY ANDA DI BAWAH INI:
+        // ==========================================
+        const GROQ_API_KEY = "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";
 
         async function loadModule(moduleFile, element) {
             const container = document.getElementById('module-container');
@@ -236,7 +238,7 @@
             loadModule('modul1', firstTab);
         };
 
-        // CHATBOT LOGIK GEMINI API BEBAS
+        // CHATBOT LOGIK GROQ API
         function toggleAiChat() {
             const chatWindow = document.getElementById('aiChatWindow');
             chatWindow.classList.toggle('hidden');
@@ -261,46 +263,51 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        async function getGeminiResponse(userPrompt) {
-            if (!GEMINI_API_KEY || GEMINI_API_KEY.includes("MASUKKAN")) {
-                return "Sila masukkan API Key standard (bermula AIzaSy...) di dalam kod JavaScript terlebih dahulu.";
+        async function getGroqResponse(userPrompt) {
+            if (!GROQ_API_KEY || GROQ_API_KEY.includes("MASUKKAN")) {
+                return "Sila masukkan Groq API Key terlebih dahulu.";
             }
-
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+        
+            const url = "https://api.groq.com/openai/v1/chat/completions";
             
-            // Konteks yang bebas dan fleksibel untuk apa jua soalan
-            const systemContext = "Anda ialah AI Assistant yang pintar dan membantu dalam pelbagai topik termasuk kes cukai korporat Rite Sdn Bhd. Jawab dengan mesra, jelas, dan profesional dalam Bahasa Melayu.";
-
             const payload = {
-                contents: [
+                model: "llama-3.3-70b-versatile",
+                messages: [
                     {
-                        parts: [
-                            { text: systemContext + "\n\nSoalan Pengguna: " + userPrompt }
-                        ]
+                        role: "system",
+                        content: "Anda ialah AI Assistant yang pintar untuk portal EduPortal Tax Advisory. Anda membantu menjawab soalan berkaitan kes cukai korporat Rite Sdn Bhd mengikut Akta Cukai Pendapatan 1967, serta boleh menjawab apa-apa soalan umum lain secara profesional dan mesra dalam Bahasa Melayu."
+                    },
+                    {
+                        role: "user",
+                        content: userPrompt
                     }
-                ]
+                ],
+                temperature: 0.7
             };
 
             try {
                 const response = await fetch(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${GROQ_API_KEY}`
+                    },
                     body: JSON.stringify(payload)
                 });
 
                 const data = await response.json();
                 
                 if (data.error) {
-                    return "Ralat API Google: " + (data.error.message || "Sila semak semula API Key anda.");
+                    return "Ralat Groq API: " + (data.error.message || "Sila semak semula API Key anda.");
                 }
 
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    return data.candidates[0].content.parts[0].text;
+                if (data.choices && data.choices[0].message.content) {
+                    return data.choices[0].message.content;
                 } else {
                     return "Maaf, respons tidak dapat diproses.";
                 }
             } catch (error) {
-                return "Ralat sambungan rangkaian ke pelayan AI.";
+                return "Ralat sambungan rangkaian ke pelayan Groq.";
             }
         }
 
@@ -322,7 +329,7 @@
             `;
             container.scrollTop = container.scrollHeight;
 
-            const aiReply = await getGeminiResponse(text);
+            const aiReply = await getGroqResponse(text);
 
             document.getElementById(loadingId).remove();
             appendFloatingMessage('bot', aiReply);
