@@ -196,5 +196,153 @@
             loadModule('modul1', firstTab);
         };
     </script>
+
+    <!-- ========================================== -->
+    <!-- FLOATING SMART AI ASSISTANT WIDGET (AI BOT) -->
+    <!-- ========================================== -->
+
+    <!-- Butang Terapung di Bucu Kanan Bawah -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleAiChat()" id="aiFloatingBtn" class="w-14 h-14 bg-[#18191c] text-[#ccff00] rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-105 transition-all duration-300 border-2 border-[#ccff00]/40 group relative">
+            <span>🤖</span>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
+        </button>
+    </div>
+
+    <!-- Kotak Popup Chatbot Terapung -->
+    <div id="aiChatWindow" class="hidden fixed bottom-24 right-6 w-96 max-w-[90vw] bg-white rounded-[32px] border border-slate-200/80 shadow-2xl z-50 overflow-hidden flex flex-col h-[500px] transition-all duration-300 animate-fade-in">
+        
+        <!-- Header Chatbot -->
+        <div class="bg-[#18191c] text-white p-4 px-5 flex justify-between items-center border-b border-white/10">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-[#ccff00] text-black font-black text-xs flex items-center justify-center">
+                    AI
+                </div>
+                <div>
+                    <h3 class="text-xs font-black text-white">Tax Advisory Assistant</h3>
+                    <span class="text-[9px] text-[#ccff00] font-semibold flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span> Online • Rite Sdn Bhd
+                    </span>
+                </div>
+            </div>
+            <button onclick="toggleAiChat()" class="w-7 h-7 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition text-xs font-bold">
+                ✕
+            </button>
+        </div>
+
+        <!-- Ruang Sejarah Perbualan -->
+        <div id="floatingChatContainer" class="flex-grow p-4 overflow-y-auto space-y-3 bg-slate-50/50 text-xs">
+            <div class="flex items-start gap-2.5">
+                <div class="w-7 h-7 rounded-xl bg-[#18191c] text-[#ccff00] font-black text-[10px] flex items-center justify-center shrink-0">
+                    AI
+                </div>
+                <div class="bg-white border border-slate-200/70 p-3 rounded-2xl rounded-tl-none text-slate-700 shadow-sm leading-relaxed">
+                    Hai! Saya AI Assistant EduPortal. Ada apa-apa persoalan berkaitan cukai kes <b>Rite Sdn Bhd</b>?
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Chips (Soalan Pantas) -->
+        <div class="p-2 bg-white border-t border-slate-100 flex gap-1.5 overflow-x-auto scrollbar-none">
+            <button onclick="sendFloatingPreset('lease')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-lg shrink-0 transition">🚗 Pajakan Kereta</button>
+            <button onclick="sendFloatingPreset('entertainment')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-lg shrink-0 transition">🍷 Hiburan</button>
+            <button onclick="sendFloatingPreset('bad debt')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-lg shrink-0 transition">📉 Hutang Lapuk</button>
+            <button onclick="sendFloatingPreset('withholding')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-lg shrink-0 transition">🌍 Cukai Pegangan</button>
+        </div>
+
+        <!-- Kotak Taip Mesej -->
+        <div class="p-3 bg-white border-t border-slate-200/80 flex gap-2">
+            <input type="text" id="floatingUserInput" onkeypress="handleFloatingKey(event)" placeholder="Taip soalan..." class="flex-grow px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-slate-900 transition">
+            <button onclick="processFloatingMessage()" class="bg-[#18191c] hover:bg-black text-[#ccff00] px-4 py-2 rounded-xl text-xs font-black transition">
+                Hantar
+            </button>
+        </div>
+
+    </div>
+
+    <!-- SKRIP LOGIK FLOATING CHATBOT -->
+    <script>
+        function toggleAiChat() {
+            const chatWindow = document.getElementById('aiChatWindow');
+            chatWindow.classList.toggle('hidden');
+        }
+
+        function appendFloatingMessage(sender, text) {
+            const container = document.getElementById('floatingChatContainer');
+            if (!container) return;
+
+            const isUser = sender === 'user';
+            const bubbleHTML = `
+                <div class="flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : ''}">
+                    <div class="w-7 h-7 rounded-xl ${isUser ? 'bg-[#b8a5fe] text-black' : 'bg-[#18191c] text-[#ccff00]'} font-black text-[10px] flex items-center justify-center shrink-0 shadow-sm">
+                        ${isUser ? 'TX' : 'AI'}
+                    </div>
+                    <div class="${isUser ? 'bg-[#18191c] text-white rounded-tr-none' : 'bg-white border border-slate-200/70 text-slate-700 rounded-tl-none'} p-3 rounded-2xl max-w-[260px] shadow-sm leading-relaxed">
+                        ${text}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += bubbleHTML;
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function getFloatingBotResponse(query) {
+            q = query.toLowerCase();
+
+            if (q.includes('lease') || q.includes('pajakan') || q.includes('kereta') || q.includes('nota 11')) {
+                return "<b>Rujukan Nota 11:</b> Pajakan kereta disekat di bawah s.39(1)(k) (Cap RM50k/RM100k berdasarkan kos asal kenderaan, PR 3/2017).";
+            } 
+            else if (q.includes('entertainment') || q.includes('hiburan') || q.includes('nota 8')) {
+                return "<b>Rujukan Nota 8:</b> Hiburan pelanggan layak potongan 50% sahaja (s.39(1)(l)). Keraian pekerja/Annual Dinner layak 100% (PR 4/2015).";
+            } 
+            else if (q.includes('bad debt') || q.includes('hutang') || q.includes('china') || q.includes('nota 5')) {
+                return "<b>Rujukan Nota 5:</b> Hapus kira hutang perdagangan pembekal China RM4M dibenarkan di bawah s.34(2).";
+            } 
+            else if (q.includes('withholding') || q.includes('cukai pegangan') || q.includes('jerman') || q.includes('sweden') || q.includes('nota 4')) {
+                return "<b>Rujukan Nota 4 & 15:</b> Bayaran luar negara tertakluk Cukai Pegangan 10% (s.109B). Jika gagal remit, belanja tidak boleh potong (s.39(1)(r)).";
+            } 
+            else if (q.includes('dividen') || q.includes('faedah') || q.includes('nota 1')) {
+                return "<b>Rujukan Nota 1:</b> Dividen RM178k dikecualikan. Faedah pinjaman saham RM1.5M dilarang (s.33(1)(a)).";
+            }
+            else {
+                return "Maaf, sila rujuk modul Legal Explorer atau pilih soalan pantas di atas untuk kes Rite Sdn Bhd!";
+            }
+        }
+
+        function processFloatingMessage() {
+            const inputField = document.getElementById('floatingUserInput');
+            const text = inputField.value.trim();
+            if(!text) return;
+
+            appendFloatingMessage('user', text);
+            inputField.value = '';
+
+            setTimeout(() => {
+                const reply = getFloatingBotResponse(text);
+                appendFloatingMessage('bot', reply);
+            }, 300);
+        }
+
+        function sendFloatingPreset(topic) {
+            let queryText = "";
+            if(topic === 'lease') queryText = "Isu pajakan kereta?";
+            if(topic === 'entertainment') queryText = "Peraturan belanja hiburan?";
+            if(topic === 'bad debt') queryText = "Hutang lapuk pembekal China?";
+            if(topic === 'withholding') queryText = "Isu cukai pegangan luar negara?";
+
+            appendFloatingMessage('user', queryText);
+            setTimeout(() => {
+                const reply = getFloatingBotResponse(topic);
+                appendFloatingMessage('bot', reply);
+            }, 300);
+        }
+
+        function handleFloatingKey(e) {
+            if(e.key === 'Enter') {
+                processFloatingMessage();
+            }
+        }
+    </script>
+    
 </body>
 </html>
