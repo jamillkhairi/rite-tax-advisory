@@ -291,21 +291,21 @@
         }
 
         // FUNGSI BERHUBUNG DENGAN GEMINI API
-        async function getGeminiResponse(userPrompt) {
+       async function getGeminiResponse(userPrompt) {
             if (GEMINI_API_KEY === "MASUKKAN_API_KEY_KAU_DI_SINI" || !GEMINI_API_KEY) {
-                return "Sila masukkan Gemini API Key terlebih dahulu di dalam kod JavaScript untuk mengaktifkan AI sebenar.";
+                return "Sila masukkan Gemini API Key terlebih dahulu.";
             }
 
+            // Kita guna model standard yang paling stabil
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
             
-            // Kita beri konteks awal supaya AI kenal dia ialah pakar cukai kes Rite Sdn Bhd
-            const systemContext = "Anda ialah Tax Advisory AI Assistant yang membantu pelajar UPSI menyiapkan kes kajian cukai korporat Rite Sdn Bhd mengikut Akta Cukai Pendapatan 1967 dan Public Rulings LHDN Malaysia. Jawab dengan ringkas, profesional, dan tepat dalam Bahasa Melayu.";
+            const systemContext = "Anda ialah Tax Advisory AI Assistant yang membantu pelajar UPSI menyiapkan kes kajian cukai korporat Rite Sdn Bhd mengikut Akta Cukai Pendapatan 1967. Jawab dengan ringkas dan profesional dalam Bahasa Melayu.";
 
             const payload = {
                 contents: [
                     {
                         parts: [
-                            { text: systemContext + "\n\nSoalan Pengguna: " + userPrompt }
+                            { text: systemContext + "\n\nSoalan: " + userPrompt }
                         ]
                     }
                 ]
@@ -319,13 +319,19 @@
                 });
 
                 const data = await response.json();
+                
+                // Debugging: semak jika ada ralat dari google
+                if (data.error) {
+                    return "Ralat API Google: " + (data.error.message || "Sila semak API Key.");
+                }
+
                 if (data.candidates && data.candidates[0].content.parts[0].text) {
                     return data.candidates[0].content.parts[0].text;
                 } else {
-                    return "Maaf, terdapat ralat semasa memproses respons AI.";
+                    return "Maaf, respons tidak dapat diproses.";
                 }
             } catch (error) {
-                return "Ralat sambungan rangkaian ke pelayan Gemini API.";
+                return "Ralat sambungan rangkaian.";
             }
         }
 
