@@ -1,61 +1,68 @@
-<div class="space-y-6">
+<div class="space-y-8 animate-in fade-in duration-300">
     
-    <!-- TOP ROW BENTO CARDS -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+    <!-- ASYMMETRICAL BENTO TOP LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <!-- CARD 1: MAIN METRICS -->
-        <div class="md:col-span-7 bg-white p-6 sm:p-7 rounded-[32px] border border-slate-200/70 shadow-sm flex flex-col justify-between">
-            <div class="flex justify-between items-start mb-4">
+        <!-- BIG HERO CARD: PROFIL KORPORAT -->
+        <div class="lg:col-span-8 bg-gradient-to-br from-[#1B4332] via-[#081C15] to-[#1B4332] text-white p-8 sm:p-10 rounded-[36px] shadow-2xl relative overflow-hidden flex flex-col justify-between border border-[#D8F3DC]/30 shadow-[0_0_30px_rgba(45,106,79,0.15)]">
+            <!-- Background Glow Elements -->
+            <div class="absolute -right-20 -top-20 w-72 h-72 bg-[#2D6A4F]/30 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-20 -bottom-20 w-72 h-72 bg-[#FF4D6D]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                 <div>
-                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Profil Kewangan</span>
-                    <h3 class="text-xl font-black text-slate-900 mt-0.5">Kedudukan Asas Rite Sdn Bhd</h3>
-                </div>
-                <span class="bg-[#ccff00] text-black text-[11px] font-extrabold px-3 py-1 rounded-full">+YA 2023</span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-2">
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">Modal Berbayar</span>
-                    <p class="text-lg font-black text-slate-900 mt-1">RM 1.0M</p>
-                    <span class="text-[10px] text-slate-500 font-medium">100% Pemastautin</span>
-                </div>
-                <div class="bg-[#b8a5fe]/20 p-4 rounded-2xl border border-[#b8a5fe]/30">
-                    <span class="text-[10px] font-bold text-purple-700 uppercase">Turnover</span>
-                    <p class="text-lg font-black text-purple-950 mt-1">RM 627.0M</p>
-                    <span class="text-[10px] text-purple-700 font-medium">Jualan Luar/Dalam</span>
-                </div>
-                <div class="bg-[#18191c] p-4 rounded-2xl text-white">
-                    <span class="text-[10px] font-bold text-[#ccff00] uppercase">Untung (PBT)</span>
-                    <p class="text-lg font-black text-white mt-1">RM 573.3M</p>
-                    <span class="text-[10px] text-slate-400 font-medium">Untung Akaun P&L</span>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-[#FF4D6D] text-white border border-white/20 text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">+YA 2023 Case</span>
+                        <span class="bg-[#2D6A4F]/60 text-[#D8F3DC] border border-[#D8F3DC]/30 text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">Active Audit</span>
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl font-black tracking-tight text-white" data-i18n="m1Title">Kedudukan Asas Rite Sdn Bhd</h3>
+                    <p class="text-sm text-slate-200 mt-2 font-medium" data-i18n="m1Subtitle">Analisis profil kewangan korporat & semakan pelarasan cukai.</p>
                 </div>
             </div>
 
-            <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600">
-                <span>Status Audit Dokumen</span>
-                <span class="text-emerald-600 font-black">17 Nota Selesai Semakan Audit</span>
+            <!-- Sleek Horizontal Metric Bars -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 relative z-10 pt-5 border-t border-[#D8F3DC]/20">
+                <div class="bg-[#081C15]/60 backdrop-blur-md p-5 rounded-2xl border border-[#D8F3DC]/15">
+                    <span class="text-xs font-bold text-[#D8F3DC] uppercase tracking-wider block mb-1.5" data-i18n="m1PaidUp">Modal Berbayar</span>
+                    <p class="text-xl font-black text-white">RM 1.0M</p>
+                    <span class="text-xs text-slate-200 font-medium mt-1 block" data-i18n="m1Resident">100% Pemastautin</span>
+                </div>
+
+                <div class="bg-[#081C15]/60 backdrop-blur-md p-5 rounded-2xl border border-[#D8F3DC]/15">
+                    <span class="text-xs font-bold text-[#D8F3DC] uppercase tracking-wider block mb-1.5" data-i18n="m1Turnover">Turnover</span>
+                    <p class="text-xl font-black text-white">RM 627.0M</p>
+                    <span class="text-xs text-slate-200 font-medium mt-1 block" data-i18n="m1Sales">Jualan Luar/Dalam</span>
+                </div>
+
+                <div class="bg-[#081C15]/60 backdrop-blur-md p-5 rounded-2xl border border-[#D8F3DC]/15">
+                    <span class="text-xs font-bold text-[#D8F3DC] uppercase tracking-wider block mb-1.5" data-i18n="m1Pbt">Untung (PBT)</span>
+                    <p class="text-xl font-black text-white">RM 573.3M</p>
+                    <span class="text-xs text-slate-200 font-medium mt-1 block" data-i18n="m1Acc">Untung Akaun P&L</span>
+                </div>
             </div>
         </div>
 
-        <!-- CARD 2: FORM C ENGINE STATS -->
-        <div class="md:col-span-5 bg-[#18191c] text-white p-6 sm:p-7 rounded-[32px] flex flex-col justify-between shadow-md">
-            <div>
+        <!-- SIDE CARD: FORM C ENGINE QUICK LAUNCH -->
+        <div class="lg:col-span-4 bg-gradient-to-br from-[#081C15] via-[#1B4332] to-[#081C15] text-white p-8 rounded-[36px] shadow-2xl flex flex-col justify-between relative overflow-hidden border border-[#D8F3DC]/30 shadow-[0_0_30px_rgba(45,106,79,0.15)]">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-[#FF4D6D]/25 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="relative z-10">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-xs font-bold text-[#ccff00] uppercase tracking-wider">Status Taksiran Cukai</span>
-                    <span class="text-[10px] bg-white/10 text-white px-2.5 py-1 rounded-full">Kadar Cukai 24%</span>
+                    <span class="text-xs font-bold bg-white/10 text-[#D8F3DC] px-3.5 py-1.5 rounded-full uppercase">Form C Engine</span>
+                    <span class="text-xs font-bold text-slate-200">24% Tax Rate</span>
                 </div>
-                <h4 class="text-3xl font-black tracking-tight text-white">Form C Engine</h4>
-                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                <h4 class="text-2xl font-black text-white tracking-tight mb-3">Automated Tax Calculation</h4>
+                <p class="text-sm text-slate-200 leading-relaxed font-medium" data-i18n="m1EngineDesc">
                     Sistem bersedia membuat pelarasan pendapatan dilaras (*Adjusted Income*) dari Keuntungan Akaun RM573,295,000.
                 </p>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-                <div>
-                    <span class="text-[10px] text-slate-400 block font-semibold">JUMLAH SLT JAM</span>
-                    <span class="text-lg font-black text-[#ccff00]">22 Hours SLT</span>
+            <div class="mt-6 pt-5 border-t border-[#D8F3DC]/20 relative z-10">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold text-slate-200 uppercase tracking-wider">JUMLAH SLT JAM</span>
+                    <span class="text-sm font-black text-[#081C15] bg-[#D8F3DC] px-3.5 py-1 rounded-full font-bold">22 Hours SLT</span>
                 </div>
-                <button onclick="loadModule('modul2', document.querySelectorAll('.nav-tab')[1])" class="bg-white text-black text-xs font-black px-4 py-2.5 rounded-xl hover:bg-[#ccff00] transition">
+                <button onclick="loadModule('modul2', document.querySelectorAll('.nav-tab')[1])" class="w-full bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] hover:from-[#A4133C] hover:to-[#FF4D6D] text-white text-sm font-black py-4 rounded-2xl shadow-xl transition flex items-center justify-center gap-2 border border-white/20">
                     Buka Calculator →
                 </button>
             </div>
@@ -63,117 +70,173 @@
 
     </div>
 
-    <!-- BOTTOM ROW BENTO: AUDIT DOCUMENTS LIST (COMPREHENSIVE NOTA 1 - 17) -->
-    <div class="bg-white p-6 sm:p-8 rounded-[32px] border border-slate-200/70 shadow-sm">
-        <div class="flex justify-between items-center mb-6">
+    <!-- DOKUMEN AUDIT & NOTA AKAUN (DENGAN COLOR GRADIENT SAMA MACAM BOX ATAS) -->
+    <div class="bg-gradient-to-br from-[#1B4332] via-[#081C15] to-[#1B4332] backdrop-blur-xl p-8 sm:p-10 rounded-[36px] border border-[#D8F3DC]/30 shadow-2xl text-white relative overflow-hidden">
+        
+        <!-- Background Glow Elements -->
+        <div class="absolute -right-32 -top-32 w-96 h-96 bg-[#2D6A4F]/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-32 -bottom-32 w-96 h-96 bg-[#FF4D6D]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Header & Interactive Filter Bar -->
+        <div class="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 pb-6 border-b border-[#D8F3DC]/20">
             <div>
-                <h3 class="text-xl font-black text-slate-900">Dokumen Audit Primer & Nota Akaun</h3>
-                <p class="text-xs font-medium text-slate-500 mt-0.5">Klik kad di bawah untuk membuka simulasi bukti audit & peruntukan undang-undang kes.</p>
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#FF4D6D] animate-pulse"></span>
+                    <span class="text-xs font-bold text-[#D8F3DC] uppercase tracking-wider">Audit Registry</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight" data-i18n="m1AuditDocsTitle">Dokumen Audit Primer & Nota Akaun</h3>
+                <p class="text-sm font-medium text-slate-200 mt-1" data-i18n="m1AuditDocsDesc">Klik kad di bawah untuk membuka simulasi bukti audit & peruntukan undang-undang kes.</p>
+            </div>
+
+            <!-- Segmented Filter Pills -->
+            <div class="flex items-center gap-2 bg-[#081C15]/80 p-2 rounded-2xl border border-[#D8F3DC]/25 text-sm font-bold shrink-0">
+                <button onclick="filterAuditNotes('all', this)" class="filter-btn px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white shadow-sm transition font-black">Semua (10)</button>
+                <button onclick="filterAuditNotes('deductible', this)" class="filter-btn px-4 py-2.5 rounded-xl text-slate-200 hover:text-white transition">Dibenarkan</button>
+                <button onclick="filterAuditNotes('tax', this)" class="filter-btn px-4 py-2.5 rounded-xl text-slate-200 hover:text-white transition">Cukai & Sekatan</button>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Dynamic Staggered Grid -->
+        <div id="auditGridContainer" class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- Nota 1 -->
-            <div onclick="showAuditDetail('Nota 1: Dividen & Faedah Pinjaman', 'Dividen RM178k dari syarikat tempatan (Pengecualian Cukai). Belanja faedah pinjaman saham RM1.5M dilarang di bawah Seksyen 33(1)(a) kerana bukan untuk menghasilkan pendapatan perniagaan.')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 1</span>
-                    <span class="text-[10px] font-bold text-rose-500 group-hover:text-rose-400">s.33(1)(a) Non-deductible</span>
+            <div data-category="tax" onclick="showAuditDetail('Nota 1: Dividen & Faedah Pinjaman', currentLang === 'en' ? 'Dividends of RM178k from local companies are tax-exempt. Loan interest of RM1.5M for share investments is disallowed under s.33(1)(a) as it is not for business income generation.' : 'Dividen RM178k dari syarikat tempatan (Pengecualian Cukai). Belanja faedah pinjaman saham RM1.5M dilarang di bawah Seksyen 33(1)(a) kerana bukan untuk menghasilkan pendapatan perniagaan.')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 1</span>
+                        <span class="text-xs font-semibold text-rose-300 bg-rose-950/80 px-3 py-1 rounded-lg border border-rose-500/30">s.33(1)(a) Non-deductible</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Dividen & Faedah Pinjaman</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Dividen RM178k | Belanja Faedah RM1.5M</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Dividen & Faedah Pinjaman</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Dividen RM178k | Belanja Faedah RM1.5M</p>
             </div>
 
             <!-- Nota 2 -->
-            <div onclick="showAuditDetail('Nota 2: Belanja Pembaikan & Naik Naiktaraf Kilang', 'Pembaikan bumbung kilang RM120k dibenarkan (Revenue expense s.33(1)(d)). Pembinaan koridor bertutup RM85k dilarang kerana merupakan perbelanjaan modal (Capital expense s.39(1)(c)).')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 2</span>
-                    <span class="text-[10px] font-bold text-indigo-500 group-hover:text-indigo-400">s.33 / s.39 Capital</span>
+            <div data-category="tax" onclick="showAuditDetail('Nota 2: Belanja Pembaikan & Naik Taraf Kilang', currentLang === 'en' ? 'Factory roof repairs of RM120k are allowable (Revenue expense s.33(1)(d)). Covered corridor construction of RM85k is disallowed as capital expenditure (Capital expense s.39(1)(c)).' : 'Pembaikan bumbung kilang RM120k dibenarkan (Revenue expense s.33(1)(d)). Pembinaan koridor bertutup RM85k dilarang kerana merupakan perbelanjaan modal (Capital expense s.39(1)(c)).')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 2</span>
+                        <span class="text-xs font-semibold text-amber-300 bg-amber-950/80 px-3 py-1 rounded-lg border border-amber-500/30">s.33 / s.39 Capital</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Pembaikan & Naik Taraf Kilang</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Bumbung RM120k | Koridor RM85k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Pembaikan & Naik Taraf Kilang</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Bumbung RM120k | Koridor RM85k</p>
             </div>
 
             <!-- Nota 3 -->
-            <div onclick="showAuditDetail('Nota 3: Untung/Rugi Forex', 'Rugi forex direalisasi (*realised*) RM45k atas pembelian bahan mentah dibenarkan (s.33(1)). Rugi forex belum direalisasi (*unrealised*) RM60k dilarang dalam pelarasan cukai (PR 12/2019).')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 3</span>
-                    <span class="text-[10px] font-bold text-cyan-500 group-hover:text-cyan-400">PR 12/2019 Forex</span>
+            <div data-category="tax" onclick="showAuditDetail('Nota 3: Untung/Rugi Forex', currentLang === 'en' ? 'Realised forex loss of RM45k on raw material purchases is allowable (s.33(1)). Unrealised forex loss of RM60k is disallowed in tax computation (PR 12/2019).' : 'Rugi forex direalisasi (*realised*) RM45k atas pembelian bahan mentah dibenarkan (s.33(1)). Rugi forex belum direalisasi (*unrealised*) RM60k dilarang dalam pelarasan cukai (PR 12/2019).')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 3</span>
+                        <span class="text-xs font-semibold text-teal-300 bg-teal-950/80 px-3 py-1 rounded-lg border border-teal-500/30">PR 12/2019 Forex</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Pertukaran Mata Wang Asing</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Realised RM45k | Unrealised RM60k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Pertukaran Mata Wang Asing</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Realised RM45k | Unrealised RM60k</p>
             </div>
 
             <!-- Nota 4 -->
-            <div onclick="showAuditDetail('Nota 4: Pemasaran & Pengiklanan', 'Fi Jurutera Jerman RM30k (Cukai Pegangan s.109B tak dipotong = Disallowed s.39(1)(r)), Pampasan RM28k (Dibenarkan), UC Takziah RM35k (Non-deductible s.39(1)(l)).')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 4</span>
-                    <span class="text-[10px] font-bold text-amber-500 group-hover:text-amber-400">Withholding Tax s.109B</span>
+            <div data-category="tax" onclick="showAuditDetail('Nota 4: Pemasaran & Pengiklanan', currentLang === 'en' ? 'German Engineer fee RM30k (WHT s.109B not deducted = Disallowed s.39(1)(r)), Compensation RM28k (Allowable), Condolence UC RM35k (Non-deductible s.39(1)(l)).' : 'Fi Jurutera Jerman RM30k (Cukai Pegangan s.109B tak dipotong = Disallowed s.39(1)(r)), Pampasan RM28k (Dibenarkan), UC Takziah RM35k (Non-deductible s.39(1)(l)).')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 4</span>
+                        <span class="text-xs font-semibold text-orange-300 bg-orange-950/80 px-3 py-1 rounded-lg border border-orange-500/30">Withholding Tax s.109B</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Pemasaran & Pengiklanan</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Fi Jerman RM30k | Takziah RM35k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Pemasaran & Pengiklanan</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Fi Jerman RM30k | Takziah RM35k</p>
             </div>
 
             <!-- Nota 5 -->
-            <div onclick="showAuditDetail('Nota 5: Hutang Lapuk & Ragu', 'Hapus kira hutang perdagangan RM4M pembekal China dibenarkan (s.34(2)). Pinjaman kepada syarikat pesaing RM500k dilarang kerana merupakan hutang bukan perdagangan.')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 5</span>
-                    <span class="text-[10px] font-bold text-emerald-500 group-hover:text-emerald-400">s.34(2) Bad Debts</span>
+            <div data-category="deductible" onclick="showAuditDetail('Nota 5: Hutang Lapuk & Ragu', currentLang === 'en' ? 'Write-off of RM4M trade debt from China supplier is allowable under s.34(2). Loan of RM500k to competitor company is disallowed as non-trade debt.' : 'Hapus kira hutang perdagangan RM4M pembekal China dibenarkan (s.34(2)). Pinjaman kepada syarikat pesaing RM500k dilarang kerana merupakan hutang bukan perdagangan.')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 5</span>
+                        <span class="text-xs font-semibold text-emerald-300 bg-emerald-950/80 px-3 py-1 rounded-lg border border-emerald-500/30">s.34(2) Bad Debts</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Hutang Lapuk & Ragu</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Hutang China RM4.0M | Pinjaman RM500k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Hutang Lapuk & Ragu</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Hutang China RM4.0M | Pinjaman RM500k</p>
             </div>
 
             <!-- Nota 8 -->
-            <div onclick="showAuditDetail('Nota 8: Hiburan Korporat', 'Hiburan pelanggan RM90k dilaras 50% potongan (s.39(1)(l)). Keraian Annual Dinner pekerja RM45k layak 100% potongan cukai (PR 4/2015).')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 8</span>
-                    <span class="text-[10px] font-bold text-purple-500 group-hover:text-purple-400">PR 4/2015 50% Cap</span>
+            <div data-category="tax" onclick="showAuditDetail('Nota 8: Hiburan Korporat', currentLang === 'en' ? 'Customer entertainment of RM207k adjusted with 50% deduction (s.39(1)(l)). Employee annual dinner of RM293k is 100% tax deductible (PR 4/2015).' : 'Hiburan pelanggan RM207k dilaras 50% potongan (s.39(1)(l)). Keraian Annual Dinner pekerja RM293k layak 100% potongan cukai (PR 4/2015).')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 8</span>
+                        <span class="text-xs font-semibold text-[#D8F3DC] bg-black/50 px-3 py-1 rounded-lg border border-[#D8F3DC]/20">PR 4/2015 50% Cap</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Perbelanjaan Hiburan</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Pelanggan RM207k | Dinner RM293k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Perbelanjaan Hiburan</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Pelanggan RM90k | Dinner RM45k</p>
             </div>
 
             <!-- Nota 11 -->
-            <div onclick="showAuditDetail('Nota 11: Caj Pajakan Kenderaan Motor', 'Lori komersial RM140k (Full deduction). Kereta 1 (Kos > RM150k) disekat di bawah s.39(1)(k) cap RM50,000. Kereta 2 (Kos ≤ RM150k) disekat cap RM100,000 (PR 3/2017).')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 11</span>
-                    <span class="text-[10px] font-bold text-blue-500 group-hover:text-blue-400">s.39(1)(k) Cap RM50k</span>
+            <div data-category="tax" onclick="showAuditDetail('Nota 11: Caj Pajakan Kenderaan Motor', currentLang === 'en' ? 'Commercial lorry RM140k (Full deduction). Car 1 (Cost > RM150k) restricted under s.39(1)(k) cap RM50,000. Car 2 (Cost <= RM150k) restricted cap RM100,000 (PR 3/2017).' : 'Lori komersial RM140k (Full deduction). Kereta 1 (Kos > RM150k) disekat di bawah s.39(1)(k) cap RM50,000. Kereta 2 (Kos ≤ RM150k) disekat cap RM100,000 (PR 3/2017).')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 11</span>
+                        <span class="text-xs font-semibold text-sky-300 bg-sky-950/80 px-3 py-1 rounded-lg border border-sky-500/30">s.39(1)(k) Cap RM50k</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Pajakan Kenderaan Motor</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Lori RM140k | Kereta 1 & 2 RM110k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Pajakan Kenderaan Motor</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Lori RM140k | Kereta 1 & 2 RM110k</p>
             </div>
 
             <!-- Nota 13 -->
-            <div onclick="showAuditDetail('Nota 13: Pengurusan Remunerasi', 'Gaji 4 pekerja OKU RM128k layak Potongan Berganda (Double Deduction s.34(4)). Kehilangan tunai pecah amanah bekas pengarah RM230k dilarang (s.39(1)).')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 13</span>
-                    <span class="text-[10px] font-bold text-emerald-500 group-hover:text-emerald-400">Double Deduction OKU</span>
+            <div data-category="deductible" onclick="showAuditDetail('Nota 13: Pengurusan Remunerasi', currentLang === 'en' ? 'Salary of 4 OKU employees RM128k eligible for Double Deduction (s.34(4)). Cash loss from ex-director breach of trust RM230k is disallowed (s.39(1)).' : 'Gaji 4 pekerja OKU RM128k layak Potongan Berganda (Double Deduction s.34(4)). Kehilangan tunai pecah amanah bekas pengarah RM230k dilarang (s.39(1)).')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 13</span>
+                        <span class="text-xs font-semibold text-emerald-300 bg-emerald-950/80 px-3 py-1 rounded-lg border border-emerald-500/30">Double Deduction OKU</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Pengurusan Remunerasi</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Pekerja OKU RM128k | Pecah Amanah RM230k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Pengurusan Remunerasi</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Pekerja OKU RM128k | Pecah Amanah RM230k</p>
             </div>
 
             <!-- Nota 15 -->
-            <div onclick="showAuditDetail('Nota 15: Fi Bantuan Teknikal Sweden', 'Syarikat Sweden beri bantuan teknologi RM230k (Fi RM219k, Tambang & Hotel RM11k). Pemotongan Cukai Pegangan 10% s.109B perlu dijelaskan sebelum dibenarkan.')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 15</span>
-                    <span class="text-[10px] font-bold text-violet-500 group-hover:text-violet-400">Non-Resident Fee s.109B</span>
+            <div data-category="tax" onclick="showAuditDetail('Nota 15: Fi Bantuan Teknikal Sweden', currentLang === 'en' ? 'Swedish company technology assistance RM230k (Fee RM219k, Travel & Hotel RM11k). 10% Withholding Tax s.109B deduction must be remitted before being allowed.' : 'Syarikat Sweden beri bantuan teknologi RM230k (Fi RM219k, Tambang & Hotel RM11k). Pemotongan Cukai Pegangan 10% s.109B perlu dijelaskan sebelum dibenarkan.')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 15</span>
+                        <span class="text-xs font-semibold text-purple-300 bg-purple-950/80 px-3 py-1 rounded-lg border border-purple-500/30">Non-Resident Fee s.109B</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Bantuan Teknikal Sweden</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Fi RM219k + Perjalanan RM11k = RM230k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Bantuan Teknikal Sweden</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Fi RM219k + Perjalanan RM11k = RM230k</p>
             </div>
 
             <!-- Nota 17 -->
-            <div onclick="showAuditDetail('Nota 17: Sumbangan & Derma Korporat', 'Sumbangan projek komuniti pendidikan anak yatim RM8k (Dibenarkan bawah s.44(11C)). Derma institusi diluluskan RM2k layak pelepasan terhad 10% s.44(6).')" class="cursor-pointer bg-[#f8fafc] hover:bg-[#18191c] group p-5 rounded-2xl border border-slate-200/60 hover:border-black transition-all duration-300">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-black bg-white group-hover:bg-[#ccff00] group-hover:text-black text-slate-800 px-2.5 py-1 rounded-lg transition">Nota 17</span>
-                    <span class="text-[10px] font-bold text-teal-500 group-hover:text-teal-400">s.44(6) Relief</span>
+            <div data-category="deductible" onclick="showAuditDetail('Nota 17: Sumbangan & Derma Korporat', currentLang === 'en' ? 'Orphanage education community project contribution RM8k (Allowable under s.44(11C)). Approved institution donation RM2k eligible for 10% limit relief s.44(6).' : 'Sumbangan projek komuniti pendidikan anak yatim RM8k (Dibenarkan bawah s.44(11C)). Derma institusi diluluskan RM2k layak pelepasan terhad 10% s.44(6).')" class="audit-card cursor-pointer bg-[#081C15]/70 backdrop-blur-md hover:bg-gradient-to-br hover:from-[#FF4D6D] hover:to-[#A4133C] group p-6 sm:p-7 rounded-3xl border border-[#D8F3DC]/25 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold bg-[#1B4332] group-hover:bg-white group-hover:text-[#081C15] text-[#D8F3DC] px-3.5 py-1.5 rounded-xl shadow-xs transition border border-[#D8F3DC]/20">Nota 17</span>
+                        <span class="text-xs font-semibold text-teal-300 bg-teal-950/80 px-3 py-1 rounded-lg border border-teal-500/30">s.44(6) Relief</span>
+                    </div>
+                    <h4 class="font-black text-white group-hover:text-white text-lg transition tracking-tight mb-2">Sumbangan & Derma Korporat</h4>
+                    <p class="text-sm text-slate-300 group-hover:text-slate-100 font-medium leading-relaxed">Projek Komuniti RM8k | Institusi RM2k</p>
                 </div>
-                <h4 class="font-bold text-slate-900 group-hover:text-white text-sm transition">Sumbangan & Derma Korporat</h4>
-                <p class="text-xs text-slate-500 group-hover:text-slate-400 mt-1">Projek Komuniti RM8k | Institusi RM2k</p>
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    function filterAuditNotes(category, btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.className = "filter-btn px-4 py-2.5 rounded-xl text-slate-300 hover:text-white transition";
+        });
+        btnElement.className = "filter-btn px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white shadow-sm transition font-black";
+
+        const cards = document.querySelectorAll('.audit-card');
+        cards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+</script>
