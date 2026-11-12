@@ -12,95 +12,213 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* 1. BACKGROUND UTAMA & TEMA EARTHY GREEN & CHERRY BLOSSOM */
+        .live-animated-bg {
+            background-color: #556B2F; /* Hijau bumi mendalam (Earthy Dark Green) */
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Lapisan penapis lembut */
+        .live-animated-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(85, 107, 47, 0.35);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 2. ANIMASI BEBOLA RAWAK */
+        @keyframes blobMotion1 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(140px, -110px) scale(1.2); }
+            66% { transform: translate(-90px, 130px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        @keyframes blobMotion2 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(-130px, 150px) scale(1.1); }
+            66% { transform: translate(110px, -80px) scale(1.3); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        @keyframes blobMotion3 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            50% { transform: translate(90px, 90px) scale(1.25); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        .aurora-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            filter: blur(100px);
+            opacity: 0.8;
+        }
+
+        .blob-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: #718355; /* Hijau earthy sederhana */
+            border-radius: 50%;
+            animation: blobMotion1 16s ease-in-out infinite;
+        }
+
+        .blob-2 {
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 55vw;
+            height: 55vw;
+            background: #A4133C; /* Merah ceri mewah dari Cherry Blossom */
+            border-radius: 50%;
+            animation: blobMotion2 20s ease-in-out infinite;
+        }
+
+        .blob-3 {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            width: 40vw;
+            height: 40vw;
+            background: #FF4D6D; /* Merah jambu terang menyerlah */
+            border-radius: 50%;
+            animation: blobMotion3 14s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #556B2F; }
+        ::-webkit-scrollbar-thumb { background: #718355; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF4D6D; }
     </style>
 </head>
-<body class="bg-[#f1f5f9] text-slate-800 min-h-screen flex selection:bg-[#ccff00] selection:text-black">
+<body class="live-animated-bg text-slate-100 min-h-screen flex selection:bg-[#FF4D6D] selection:text-white">
 
-    <!-- 1. MINIMALIST DARK SIDEBAR LEFT -->
-    <aside class="w-60 bg-[#18191c] text-white p-5 flex flex-col justify-between shrink-0 min-h-screen border-r border-white/5">
-        <div>
+    <!-- BEBOLA AURORA BERGERAK RAWAK -->
+    <div class="aurora-container">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+        <div class="blob-3"></div>
+    </div>
+
+    <!-- 1. SIDEBAR ELEGAN -->
+    <aside class="w-72 bg-[#485E2B]/95 backdrop-blur-xl text-slate-100 p-6 flex flex-col justify-between shrink-0 min-h-screen border-r border-[#E9F5DB]/20 shadow-2xl relative overflow-hidden z-20">
+        <!-- Ambient lighting background inside sidebar -->
+        <div class="absolute -top-24 -left-24 w-48 h-48 bg-[#718355]/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-[#A4133C]/25 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10">
             <!-- Brand / Logo -->
-            <div class="flex items-center gap-3 mb-8 px-2">
-                <div class="w-9 h-9 rounded-xl bg-[#ccff00] flex items-center justify-center text-black font-black text-lg shadow-[0_0_15px_rgba(204,255,0,0.3)]">
-                    ⚡
+            <div class="flex items-center gap-3.5 mb-10 px-2">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#718355] via-[#FF4D6D] to-[#A4133C] flex items-center justify-center text-white font-black text-xl shadow-lg shadow-[#FF4D6D]/30 animate-pulse">
+                    🌿
                 </div>
                 <div>
                     <h1 class="font-black text-base tracking-tight leading-none text-white">EduPortal</h1>
-                    <span class="text-[9px] text-slate-400 font-bold tracking-wider uppercase">Tax Advisory v2.0</span>
+                    <span class="text-[10px] bg-gradient-to-r from-[#E9F5DB] to-[#FF8FA3] bg-clip-text text-transparent font-extrabold tracking-wider uppercase">Tax Advisory Pro v2.0</span>
                 </div>
             </div>
 
             <!-- Ringkasan Kategori Menu -->
             <div class="px-3 mb-3">
-                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest">Main Menu</span>
+                <span id="menuTitle" class="text-xs font-bold text-[#E9F5DB]/80 uppercase tracking-widest">Main Navigation</span>
             </div>
 
             <!-- Nav Menu Buttons -->
-            <nav class="space-y-1.5">
-                <button onclick="loadModule('modul1', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all bg-white text-black shadow-sm">
-                    <div class="flex items-center gap-2.5">
-                        <span class="text-sm">📊</span>
-                        <span class="whitespace-nowrap">Case Hub</span>
+            <nav class="space-y-2">
+                <button onclick="loadModule('modul1', this)" class="nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white shadow-lg shadow-[#FF4D6D]/30 border border-[#FFB3C1]/30">
+                    <div class="flex items-center gap-3">
+                        <span class="text-base">📊</span>
+                        <span class="whitespace-nowrap" data-i18n="navCase">Case Hub</span>
                     </div>
-                    <span class="w-2 h-2 rounded-full bg-[#ccff00] active-dot"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#E9F5DB] active-dot shadow-[0_0_8px_#E9F5DB]"></span>
                 </button>
 
-                <button onclick="loadModule('modul2', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
-                    <div class="flex items-center gap-2.5">
-                        <span class="text-sm">🧮</span>
-                        <span class="whitespace-nowrap">Tax Calculator</span>
-                    </div>
-                </button>
-
-                <button onclick="loadModule('modul3', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
-                    <div class="flex items-center gap-2.5">
-                        <span class="text-sm">🛡️</span>
-                        <span class="whitespace-nowrap">s.140 Scanner</span>
+                <button onclick="loadModule('modul2', this)" class="nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-3">
+                        <span class="text-base">🧮</span>
+                        <span class="whitespace-nowrap" data-i18n="navCalc">Tax Calculator</span>
                     </div>
                 </button>
 
-                <button onclick="loadModule('modul4', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
-                    <div class="flex items-center gap-2.5">
-                        <span class="text-sm">📚</span>
-                        <span class="whitespace-nowrap">Legal Explorer</span>
+                <button onclick="loadModule('modul3', this)" class="nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-3">
+                        <span class="text-base">🛡️</span>
+                        <span class="whitespace-nowrap" data-i18n="navScan">s.140 Scanner</span>
                     </div>
                 </button>
 
-                <button onclick="loadModule('modul5', this)" class="nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10">
-                    <div class="flex items-center gap-2.5">
-                        <span class="text-sm">👥</span>
-                        <span class="whitespace-nowrap">Team Info</span>
+                <button onclick="loadModule('modul4', this)" class="nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-3">
+                        <span class="text-base">📚</span>
+                        <span class="whitespace-nowrap" data-i18n="navLegal">Legal Explorer</span>
                     </div>
-                </button>    
+                </button>
+
+                <button onclick="loadModule('modul6', this)" class="nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-3">
+                        <span class="text-base">🎯</span>
+                        <span class="whitespace-nowrap" data-i18n="navStrategy">Strategy Hub</span>
+                    </div>
+                </button>
+
+                <button onclick="loadModule('modul-extra', this)" class="nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-3">
+                        <span class="text-base">📈</span>
+                        <span class="whitespace-nowrap" data-i18n="navExtra">Master Tax Calc</span>
+                    </div>
+                </button>
+
+                <button onclick="loadModule('modul5', this)" class="nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10">
+                    <div class="flex items-center gap-3">
+                        <span class="text-base">👥</span>
+                        <span class="whitespace-nowrap" data-i18n="navTeam">Team Info</span>
+                    </div>
+                </button>  
             </nav>
         </div>
 
-        <!-- Bottom Info Card -->
-        <div class="bg-[#24262b] p-3.5 rounded-2xl border border-white/5 mt-6">
-            <div class="bg-[#ccff00] text-black p-2.5 rounded-xl mb-2">
-                <p class="text-[9px] font-black uppercase tracking-wider">YA 2023 Case</p>
-                <p class="text-xs font-black truncate">Rite Sdn Bhd</p>
+        <!-- Bottom Executive Case Widget -->
+        <div class="relative z-10 bg-gradient-to-r from-[#3A4E22] to-[#2B3B18] p-4.5 rounded-2xl border border-[#E9F5DB]/20 mt-6 shadow-inner backdrop-blur-md">
+            <div class="bg-gradient-to-r from-[#FF4D6D] to-[#FF8FA3] text-white p-3 rounded-xl mb-2 shadow-md font-extrabold">
+                <p class="text-[10px] uppercase tracking-wider text-white/90">Active Case Study</p>
+                <p class="text-xs truncate">Rite Sdn Bhd</p>
             </div>
-            <p class="text-[9px] text-slate-400 leading-tight px-1 font-medium">UPSI PAT3024 Project</p>
+            <p class="text-xs text-[#E9F5DB] text-center font-bold">UPSI PAT3024 Tax Project</p>
         </div>
     </aside>
 
     <!-- 2. MAIN WORKSPACE -->
-    <div class="flex-grow flex flex-col min-w-0 min-h-screen">
+    <div class="flex-grow flex flex-col min-w-0 min-h-screen relative z-10">
         
-        <!-- Header Atas -->
-        <header class="bg-white px-8 py-4 border-b border-slate-200/80 flex flex-wrap justify-between items-center gap-4 sticky top-0 z-30">
+        <!-- Top Floating Header with Glassmorphism -->
+        <header class="bg-[#3A4E22]/90 backdrop-blur-xl px-8 py-4 border-b border-[#E9F5DB]/15 flex flex-wrap justify-between items-center gap-4 sticky top-0 z-30 shadow-xs">
             <div>
-                <h2 class="text-lg font-black text-slate-900 tracking-tight">Overview & Analytics</h2>
-                <p class="text-[11px] font-medium text-slate-500">Semak pelarasan cukai & dokumen audit syarikat.</p>
+                <h2 id="headerTitle" class="text-xl sm:text-2xl font-black bg-gradient-to-r from-white via-[#E9F5DB] to-[#FF8FA3] bg-clip-text text-transparent tracking-tight">Overview & Analytics</h2>
+                <p id="headerDesc" class="text-sm font-medium text-slate-200">Semak pelarasan cukai & dokumen audit syarikat.</p>
             </div>
 
             <div class="flex items-center gap-3">
-                <div class="bg-slate-100 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600">
-                    🗓️ 31 Dis 2023
+                <!-- Toggle Bahasa BM / EN -->
+                <div class="bg-[#2B3B18]/60 p-1 rounded-2xl flex items-center gap-1 border border-[#E9F5DB]/20 shadow-2xs">
+                    <button onclick="switchLanguage('ms')" id="langMsBtn" class="px-3.5 py-1.5 rounded-xl text-xs font-black bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white transition shadow-sm">BM</button>
+                    <button onclick="switchLanguage('en')" id="langEnBtn" class="px-3.5 py-1.5 rounded-xl text-xs font-black text-slate-300 hover:text-white transition">EN</button>
                 </div>
-                <div class="bg-[#18191c] text-white pl-2 pr-3.5 py-1 rounded-xl flex items-center gap-2 shadow-sm">
-                    <div class="w-6 h-6 rounded-lg bg-[#b8a5fe] text-black font-extrabold text-[10px] flex items-center justify-center">
+
+                <div class="bg-[#2B3B18]/60 px-4 py-2 rounded-2xl text-xs font-bold text-white border border-[#E9F5DB]/20 flex items-center gap-2 shadow-2xs">
+                    <span>🗓️</span> 31 Dis 2023
+                </div>
+
+                <div class="bg-gradient-to-r from-[#718355] to-[#3A4E22] text-white pl-3 pr-4 py-2 rounded-2xl flex items-center gap-2.5 shadow-md border border-[#E9F5DB]/20">
+                    <div class="w-6 h-6 rounded-lg bg-[#FF4D6D] text-white font-extrabold text-[10px] flex items-center justify-center shadow-xs animate-bounce">
                         TX
                     </div>
                     <span class="text-xs font-bold">Group Admin</span>
@@ -108,49 +226,50 @@
             </div>
         </header>
 
-        <!-- Container Modul -->
+        <!-- Container Modul (Dinamik) -->
         <main id="module-container" class="p-8 flex-grow">
-            <div class="flex items-center justify-center py-24 text-slate-400 font-bold text-sm">
+            <div class="flex items-center justify-center py-24 text-[#E9F5DB] font-bold text-sm">
                 Memuatkan modul...
             </div>
         </main>
     </div>
 
     <!-- MODAL POPUP AUDIT -->
-    <div id="auditModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-        <div class="bg-[#18191c] text-white rounded-3xl max-w-lg w-full p-8 shadow-2xl border border-white/10">
-            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                <h3 id="modalTitle" class="text-lg font-black text-[#ccff00]"></h3>
-                <button onclick="closeAuditDetail()" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition">✕</button>
+    <div id="auditModal" class="hidden fixed inset-0 bg-[#2B3B18]/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
+        <div class="bg-[#3A4E22] text-white rounded-[36px] max-w-lg w-full p-8 shadow-2xl border border-[#E9F5DB]/30 animate-in fade-in zoom-in duration-300">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#E9F5DB]/20">
+                <h3 id="modalTitle" class="text-lg font-black bg-gradient-to-r from-[#E9F5DB] to-[#FF8FA3] bg-clip-text text-transparent"></h3>
+                <button onclick="closeAuditDetail()" class="w-8 h-8 rounded-full bg-[#718355] text-white flex items-center justify-center hover:bg-[#FF4D6D] transition font-bold">✕</button>
             </div>
-            <p id="modalBody" class="text-xs sm:text-sm text-slate-300 leading-relaxed bg-white/5 p-5 rounded-2xl border border-white/5 mb-6"></p>
+            <p id="modalBody" class="text-sm text-slate-200 leading-relaxed bg-[#2B3B18]/60 p-5 rounded-2xl border border-[#E9F5DB]/15 mb-6 font-medium"></p>
             <div class="flex justify-end">
-                <button onclick="closeAuditDetail()" class="bg-[#ccff00] text-black text-xs font-black px-6 py-3 rounded-2xl hover:bg-[#b5e600] transition">Selesai Semak</button>
+                <button onclick="closeAuditDetail()" class="bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] hover:from-[#A4133C] hover:to-[#FF4D6D] text-white text-xs font-black px-6 py-3 rounded-2xl shadow-lg transition">Selesai Semak</button>
             </div>
         </div>
     </div>
 
     <!-- FLOATING SMART AI ASSISTANT WIDGET -->
     <div class="fixed bottom-6 right-6 z-50">
-        <button onclick="toggleAiChat()" id="aiFloatingBtn" class="w-14 h-14 bg-[#18191c] text-[#ccff00] rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-105 transition-all duration-300 border-2 border-[#ccff00]/40 group relative">
-            <span>🤖</span>
-            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
+        <button onclick="toggleAiChat()" id="aiFloatingBtn" class="w-14 h-14 bg-gradient-to-tr from-[#718355] via-[#FF4D6D] to-[#A4133C] text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-all duration-300 border-2 border-[#3A4E22] relative group font-bold">
+            <span>🌸</span>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-[#E9F5DB] rounded-full border-2 border-[#3A4E22] animate-ping"></span>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-[#FF4D6D] rounded-full border-2 border-[#3A4E22]"></span>
         </button>
     </div>
 
     <!-- Kotak Popup Chatbot Terapung -->
-    <div id="aiChatWindow" class="hidden fixed bottom-24 right-6 w-96 max-w-[90vw] bg-white rounded-[32px] border border-slate-200/80 shadow-2xl z-50 overflow-hidden flex flex-col h-[500px] transition-all duration-300 animate-fade-in">
+    <div id="aiChatWindow" class="hidden fixed bottom-24 right-6 w-96 max-w-[90vw] bg-[#3A4E22]/95 backdrop-blur-2xl rounded-[32px] border border-[#E9F5DB]/30 shadow-2xl z-50 overflow-hidden flex flex-col h-[500px] transition-all duration-300 text-slate-100">
         
         <!-- Header Chatbot -->
-        <div class="bg-[#18191c] text-white p-4 px-5 flex justify-between items-center border-b border-white/10">
+        <div class="bg-[#2B3B18] text-white p-4 px-5 flex justify-between items-center border-b border-[#E9F5DB]/20">
             <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-xl bg-[#ccff00] text-black font-black text-xs flex items-center justify-center">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#FF4D6D] to-[#A4133C] text-white font-black text-xs flex items-center justify-center shadow-md">
                     AI
                 </div>
                 <div>
                     <h3 class="text-xs font-black text-white">Tax Advisory Assistant</h3>
-                    <span class="text-[9px] text-[#ccff00] font-semibold flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span> Online • Rite Sdn Bhd
+                    <span class="text-[10px] text-[#E9F5DB] font-semibold flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#E9F5DB] animate-pulse"></span> Online • Rite Sdn Bhd
                     </span>
                 </div>
             </div>
@@ -160,49 +279,85 @@
         </div>
 
         <!-- Ruang Sejarah Perbualan -->
-        <div id="floatingChatContainer" class="flex-grow p-4 overflow-y-auto space-y-3 bg-slate-50/50 text-xs">
+        <div id="floatingChatContainer" class="flex-grow p-4 overflow-y-auto space-y-3 bg-[#2B3B18]/40 text-sm">
             <div class="flex items-start gap-2.5">
-                <div class="w-7 h-7 rounded-xl bg-[#18191c] text-[#ccff00] font-black text-[10px] flex items-center justify-center shrink-0">
+                <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-[#FF4D6D] to-[#A4133C] text-white font-black text-[10px] flex items-center justify-center shrink-0 shadow-sm">
                     AI
                 </div>
-                <div class="bg-white border border-slate-200/70 p-3 rounded-2xl rounded-tl-none text-slate-700 shadow-sm leading-relaxed">
+                <div id="botWelcomeText" class="bg-[#718355]/40 border border-[#E9F5DB]/20 p-3.5 rounded-2xl rounded-tl-none text-slate-100 shadow-sm leading-relaxed font-medium">
                     Hai! Saya AI Assistant EduPortal. Ada apa-apa persoalan berkaitan cukai kes <b>Rite Sdn Bhd</b>?
                 </div>
             </div>
         </div>
 
         <!-- Quick Chips (Soalan Pantas) -->
-        <div class="p-2.5 bg-white border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none">
-            <button onclick="sendFloatingPreset('lease')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">🚗 Pajakan Kereta</button>
-            <button onclick="sendFloatingPreset('entertainment')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">🍷 Hiburan</button>
-            <button onclick="sendFloatingPreset('bad debt')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">📉 Hutang Lapuk</button>
-            <button onclick="sendFloatingPreset('withholding')" class="bg-slate-100 hover:bg-[#ccff00] hover:text-black text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition shadow-sm">🌍 Cukai Pegangan</button>
+        <div class="p-2.5 bg-[#2B3B18] border-t border-[#E9F5DB]/20 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none">
+            <button onclick="sendFloatingPreset('lease')" class="bg-[#718355]/50 hover:bg-[#FF4D6D] hover:text-white text-[#E9F5DB] text-xs font-bold px-3.5 py-1.5 rounded-xl shrink-0 transition shadow-2xs border border-[#E9F5DB]/20">🚗 Pajakan Kereta</button>
+            <button onclick="sendFloatingPreset('entertainment')" class="bg-[#718355]/50 hover:bg-[#FF4D6D] hover:text-white text-[#E9F5DB] text-xs font-bold px-3.5 py-1.5 rounded-xl shrink-0 transition shadow-2xs border border-[#E9F5DB]/20">🍷 Hiburan</button>
+            <button onclick="sendFloatingPreset('bad debt')" class="bg-[#718355]/50 hover:bg-[#FF4D6D] hover:text-white text-[#E9F5DB] text-xs font-bold px-3.5 py-1.5 rounded-xl shrink-0 transition shadow-2xs border border-[#E9F5DB]/20">📉 Hutang Lapuk</button>
+            <button onclick="sendFloatingPreset('withholding')" class="bg-[#718355]/50 hover:bg-[#FF4D6D] hover:text-white text-[#E9F5DB] text-xs font-bold px-3.5 py-1.5 rounded-xl shrink-0 transition shadow-2xs border border-[#E9F5DB]/20">🌍 Cukai Pegangan</button>
         </div>
 
         <!-- Kotak Taip Mesej -->
-        <div class="p-3 bg-white border-t border-slate-200/80 flex gap-2">
-            <input type="text" id="floatingUserInput" onkeypress="handleFloatingKey(event)" placeholder="Taip soalan..." class="flex-grow px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-slate-900 transition">
-            <button onclick="processFloatingMessage()" class="bg-[#18191c] hover:bg-black text-[#ccff00] px-4 py-2 rounded-xl text-xs font-black transition">
+        <div class="p-3 bg-[#2B3B18] border-t border-[#E9F5DB]/20 flex gap-2">
+            <input type="text" id="floatingUserInput" onkeypress="handleFloatingKey(event)" placeholder="Taip soalan..." class="flex-grow px-3.5 py-2.5 bg-[#3A4E22] text-white border border-[#E9F5DB]/25 rounded-2xl text-xs focus:outline-none focus:ring-2 focus:ring-[#FF4D6D] transition font-medium placeholder-slate-300">
+            <button onclick="processFloatingMessage()" class="bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] hover:from-[#A4133C] hover:to-[#FF4D6D] text-white px-4 py-2.5 rounded-2xl text-xs font-black transition shadow-md">
                 Hantar
             </button>
         </div>
     </div>
 
-    <!-- JAVASCRIPT MASTER & FAQ LENGKAP DALAM SATU FAIL -->
+    <!-- LINK FAIL JS LUAR -->
+    <script src="faq-data.js"></script>
+    <script src="lang-en.js"></script>
+
+    <!-- SKRIP UTAMA PORTAL -->
     <script>
+        let currentLang = 'ms';
+        let activeModuleFile = 'modul1';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const isEn = (lang === 'en');
+
+            document.getElementById('langMsBtn').className = isEn 
+                ? "px-3.5 py-1.5 rounded-xl text-xs font-black text-slate-300 hover:text-white transition"
+                : "px-3.5 py-1.5 rounded-xl text-xs font-black bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white transition shadow-sm";
+            
+            document.getElementById('langEnBtn').className = isEn 
+                ? "px-3.5 py-1.5 rounded-xl text-xs font-black bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white transition shadow-sm"
+                : "px-3.5 py-1.5 rounded-xl text-xs font-black text-slate-300 hover:text-white transition";
+
+            if (isEn && typeof dictEn !== 'undefined') {
+                document.getElementById('menuTitle').innerText = dictEn.menuTitle;
+                document.getElementById('headerTitle').innerText = dictEn.headerTitle;
+                document.getElementById('headerDesc').innerText = dictEn.headerDesc;
+                document.getElementById('botWelcomeText').innerHTML = dictEn.welcomeMsg;
+
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if(dictEn[key]) el.innerHTML = dictEn[key];
+                });
+            } else {
+                const activeBtn = document.querySelector('.nav-tab.bg-gradient-to-r') || document.querySelector('.nav-tab');
+                loadModule(activeModuleFile, activeBtn);
+            }
+        }
+
         async function loadModule(moduleFile, element) {
+            activeModuleFile = moduleFile;
             const container = document.getElementById('module-container');
             
             const tabs = document.querySelectorAll('.nav-tab');
             tabs.forEach(tab => {
-                tab.className = 'nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-white/10';
+                tab.className = 'nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all text-slate-200 hover:text-white hover:bg-white/10';
                 const activeDot = tab.querySelector('.active-dot');
                 if(activeDot) activeDot.remove();
             });
             
-            element.className = 'nav-tab w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all bg-white text-black shadow-sm';
+            element.className = 'nav-tab w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold transition-all bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white shadow-lg shadow-[#FF4D6D]/30 border border-[#FFB3C1]/30';
             if(!element.querySelector('.active-dot')) {
-                element.innerHTML += `<span class="w-2 h-2 rounded-full bg-[#ccff00] active-dot"></span>`;
+                element.innerHTML += `<span class="w-2 h-2 rounded-full bg-[#E9F5DB] active-dot shadow-[0_0_8px_#E9F5DB]"></span>`;
             }
 
             try {
@@ -210,11 +365,18 @@
                 if (response.ok) {
                     const html = await response.text();
                     container.innerHTML = html;
+
+                    if (currentLang === 'en' && typeof dictEn !== 'undefined') {
+                        document.querySelectorAll('[data-i18n]').forEach(el => {
+                            const key = el.getAttribute('data-i18n');
+                            if(dictEn[key]) el.innerHTML = dictEn[key];
+                        });
+                    }
                 } else {
-                    container.innerHTML = `<div class="p-6 bg-red-100 text-red-700 rounded-2xl text-sm font-bold">Gagal memuatkan ${moduleFile}.html</div>`;
+                    container.innerHTML = `<div class="p-6 bg-red-900/50 text-red-200 rounded-2xl text-sm font-bold border border-red-500/30">Gagal memuatkan ${moduleFile}.html</div>`;
                 }
             } catch (error) {
-                container.innerHTML = `<div class="p-6 bg-amber-100 text-amber-800 rounded-2xl text-sm font-bold">Nota: Buka fail melalui VS Code Live Server.</div>`;
+                container.innerHTML = `<div class="p-6 bg-amber-900/50 text-amber-200 rounded-2xl text-sm font-bold border border-amber-500/30">Nota: Buka fail melalui VS Code Live Server.</div>`;
             }
         }
 
@@ -233,7 +395,6 @@
             loadModule('modul1', firstTab);
         };
 
-        // CHATBOT LOGIK WIDGET
         function toggleAiChat() {
             const chatWindow = document.getElementById('aiChatWindow');
             chatWindow.classList.toggle('hidden');
@@ -246,40 +407,16 @@
             const isUser = sender === 'user';
             const bubbleHTML = `
                 <div class="flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : ''}">
-                    <div class="w-7 h-7 rounded-xl ${isUser ? 'bg-[#b8a5fe] text-black' : 'bg-[#18191c] text-[#ccff00]'} font-black text-[10px] flex items-center justify-center shrink-0 shadow-sm">
+                    <div class="w-7 h-7 rounded-xl ${isUser ? 'bg-gradient-to-tr from-[#FF4D6D] to-[#A4133C] text-white' : 'bg-gradient-to-tr from-[#718355] to-[#3A4E22] text-white'} font-black text-[10px] flex items-center justify-center shrink-0 shadow-sm">
                         ${isUser ? 'TX' : 'AI'}
                     </div>
-                    <div class="${isUser ? 'bg-[#18191c] text-white rounded-tr-none' : 'bg-white border border-slate-200/70 text-slate-700 rounded-tl-none'} p-3 rounded-2xl max-w-[260px] shadow-sm leading-relaxed">
+                    <div class="${isUser ? 'bg-gradient-to-r from-[#FF4D6D] to-[#A4133C] text-white rounded-tr-none font-bold' : 'bg-[#718355]/40 border border-[#E9F5DB]/20 text-slate-100 rounded-tl-none font-medium'} p-3.5 rounded-2xl max-w-[260px] shadow-sm leading-relaxed text-sm">
                         ${text}
                     </div>
                 </div>
             `;
             container.innerHTML += bubbleHTML;
             container.scrollTop = container.scrollHeight;
-        }
-
-        // FUNGSI JAWAPAN FAQ (Senang nak tambah soalan baru di sini)
-        function getFloatingBotResponse(query) {
-            let q = query.toLowerCase();
-
-            if (q.includes('lease') || q.includes('pajakan') || q.includes('kereta') || q.includes('nota 11')) {
-                return "<b>Rujukan Nota 11 (Pajakan Kenderaan):</b> Pajakan kereta penumpang disekat di bawah s.39(1)(k) (Had kos pemilikan asal RM50k/RM100k, PR No. 3/2017). Lori komersial dibenarkan penuh.";
-            } 
-            else if (q.includes('entertainment') || q.includes('hiburan') || q.includes('nota 8')) {
-                return "<b>Rujukan Nota 8 (Perbelanjaan Hiburan):</b> Hiburan kepada pelanggan layak potongan 50% sahaja (s.39(1)(l)). Manakala keraian pekerja (seperti Annual Dinner) layak potongan penuh 100% (PR No. 4/2015).";
-            } 
-            else if (q.includes('bad debt') || q.includes('hutang') || q.includes('china') || q.includes('nota 5')) {
-                return "<b>Rujukan Nota 5 (Hutang Lapuk & Ragu):</b> Hapus kira hutang perdagangan pembekal China bernilai RM4M dibenarkan potongan di bawah s.34(2) kerana memenuhi syarat tindakan kutipan munasabah.";
-            } 
-            else if (q.includes('withholding') || q.includes('cukai pegangan') || q.includes('jerman') || q.includes('sweden') || q.includes('nota 4')) {
-                return "<b>Rujukan Nota 4 & 15 (Cukai Pegangan):</b> Bayaran kepada syarikat bukan pemastautin (Jurutera Jerman & Sweden) tertakluk Cukai Pegangan 10% (s.109B). Gagal remit menyebabkan belanja jadi *disallowed* (s.39(1)(r)).";
-            } 
-            else if (q.includes('dividen') || q.includes('faedah') || q.includes('nota 1')) {
-                return "<b>Rujukan Nota 1 (Dividen & Faedah):</b> Dividen RM178k adalah dikecualikan cukai. Belanja faedah pinjaman bank RM1.5M untuk pelaburan saham dilarang (*disallowed*) di bawah s.33(1)(a).";
-            }
-            else {
-                return "Berdasarkan kes Rite Sdn Bhd, anda boleh rujuk butang soalan pantas di atas atau semak modul <b>Legal Explorer</b> untuk rujukan Public Ruling LHDN yang terperinci!";
-            }
         }
 
         function processFloatingMessage() {
